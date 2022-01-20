@@ -1,0 +1,36 @@
+.button_mini{
+    position: absolute;
+    width: 178px;
+    height: 33px;
+    background: white;
+    border-radius: 11px;
+    left: 50%;
+    bottom: 5%;
+    transform: translate(-50%,0%);
+    z-index: 3;
+
+    &:active{
+        transform: translate(-50%,10%);
+    }
+}
+.button_mini__text{
+    position:absolute;
+    font-size: 15px;
+    text-align: center;
+    top: 50%;
+    font-family: 'PressStart2P';
+    line-height: 15px;
+    left: 50%;
+    color: #FC0000;
+    transform: translate(-50%,-50%);
+}
+.button_mini__shadow{
+    position: absolute;
+    width: 178px;
+    height: 33px;
+    background: #E8E8E8;
+    border-radius: 11px;
+    left: 50%;
+    bottom: calc(5% - 7px);
+    transform: translate(-50%,0%);
+}

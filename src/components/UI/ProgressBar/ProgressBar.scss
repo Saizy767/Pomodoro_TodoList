@@ -1,0 +1,19 @@
+.road_place{
+    position: relative;
+    width: 362px;
+    height: 18px;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%,-30%);
+    background: #D0BB73;
+    border-radius: 2px;
+}
+.road{
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0%;
+    height: 18px;
+    background: #F59E6C;
+    border-radius: 2px;
+}

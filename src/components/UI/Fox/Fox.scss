@@ -1,0 +1,17 @@
+.fox{
+    position: absolute;
+    height: 20%;
+    width:auto;
+    bottom: 0;
+    right: -20%;
+    animation-name: goToFox;
+    animation-duration: 6s;
+}
+@keyframes goToFox{
+    from{
+        right: -20%;
+    }
+    to{
+        right: 115%;
+    }
+}

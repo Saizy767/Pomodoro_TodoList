@@ -1,0 +1,37 @@
+.button_menu__text{
+    top: 40%;
+    position: absolute;
+    width: 420px;
+    text-align: center;
+    font-family: PressStart2P;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 13px;
+    color: #000000;
+}
+.button_menu__shadow{
+    z-index: 1;
+    position: relative;
+    top: calc(50% + 10px);
+    left: 50%;
+    transform: translate(-50%,10%);
+    width: 420px;
+    height: 78px;
+    border-radius: 19px;
+}
+
+.button_menu{
+    display: flex;
+    position: relative;
+    top: -10%;
+    left: 50%;
+    transform: translate(-50%,90%);
+    width: 420px;
+    height: 78px;
+    border-radius: 19px;
+    z-index: 2;
+    &:active{
+    transform: translate(-50%,100%);
+    background-color: #a07684;}
+}

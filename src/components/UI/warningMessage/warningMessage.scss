@@ -1,0 +1,49 @@
+.warning_place{
+    position: absolute;
+    width: 230px;
+    height: 90px;
+    background-color: rgba(240, 74, 74, 0.4);
+    border: rgba(244, 129, 129, 0.74) solid 3px;
+    border-radius: 5px;
+    right: calc( 0% - 240px);
+    text-align: center;
+    top: 5%;
+    animation: goToWarning 5s;
+}
+
+.warning_place__text{
+    position: absolute;
+    font-family: 'PressStart2P';
+    text-align: center;
+    font-size: 75%;
+}
+
+.warning_place__icon{
+    position: absolute;
+    opacity: 1;
+    left: 0%;
+    width: auto;
+    height: 100%;
+}
+
+@keyframes goToWarning{
+    0%{ 
+        right: calc( 0% - 240px);
+        opacity: 0;
+    }
+    25%{
+        opacity: 1;
+        right: 0%;
+    }
+    50%{
+        right: 0%;
+    }
+    75%{
+        opacity: 1;
+        right: 0%;
+    }
+    100%{
+        opacity: 0;
+        right: calc( 0% - 240px);
+    }
+}

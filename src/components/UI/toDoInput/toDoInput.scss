@@ -1,0 +1,25 @@
+.toDo_li{
+    list-style:none;
+    position:relative;
+    margin-bottom:5%
+}
+.toDo_place{
+    font-size: 15px;
+    position: relative;
+    box-sizing: border-box;
+    list-style: none;
+    width: 100%;
+    height: 24px !important;
+    border: solid 3px;
+    border-radius: 6px;
+    background: #FFFFFF;
+    padding-left: 17%;
+    font-family: PressStart2P;
+}
+.toDo_number{
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 5%;
+    transform: translate(-5%,-50%);
+}
