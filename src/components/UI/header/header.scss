@@ -1,40 +1,69 @@
+$standart_header_width:410px;
+$standart_header_heigth:92px;
+
 .head_place{
     position: relative;
-    width: 410px;
-    max-width: 410px;
-    height: 92px;
-    max-height: 92px;
+    width: $standart_header_width;
+    height: $standart_header_heigth;
     top: 10px;
     left: 50%;
     transform: translate(-50%, 10px);
     background-color: #969390;
     border-radius: 33.5px;
     z-index: 3;
-
+    @media screen and (min-width:1400px){
+        width: calc($standart_header_width * 1.5);
+        height: calc($standart_header_heigth * 1.5);
+    }
+    @media screen and (max-width:736px){
+        width: 300px;
+        height: 100px;
+        transform: translate(-50%,50%);
+        border-radius: 20px;
+    }
+    &__text{
+        position:absolute;
+        font-size: 34px;
+        text-align: center;
+        font-family: 'PressStart2P';
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: #564D4D;
+        width: 100%;
+        @media screen and (min-width:1400px) {
+            font-size: calc(34px * 1.5);
+            
+        }
+        @media screen and (max-width:736px){
+            font-size: 30px;
+        }
+    }
     &:active{
         transform: translate(-50%,20px);
+        @media screen and (max-width:736px){
+            transform: translate(-50%,60%);
+        }
     }
 }
-.head_place__text{
-    position:absolute;
-    font-size: 34px;
-    text-align: center;
-    display: flex;
-    font-family: 'PressStart2P';
-    top: 12%;
-    color: #564D4D;
-    width: 100%;
-}
-.head_place__shadow{
+.head_place_shadow{
     position: absolute;
-    width: 410px;
-    max-width: 410px;
-    height: 92px;
-    max-height: 92px;
+    width: $standart_header_width;
+    height: $standart_header_heigth;
     top: calc(6% + 15px);
     left: 50%;
     transform: translate(-50%, -6%);
     background-color: #706D6B;
     border-radius: 33.5px;
     z-index:2;
+    @media screen and (min-width:1400px){
+        width: calc($standart_header_width * 1.5);
+        height: calc($standart_header_heigth * 1.5);
+    }
+    @media screen and (max-width:736px){
+        position: relative;
+        width: 300px;
+        transform: translate(-50%,-25%);
+        border-radius: 20px;
+    }
 }

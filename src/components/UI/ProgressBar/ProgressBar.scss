@@ -1,19 +1,23 @@
-.road_place{
+.progress_bar{
     position: relative;
-    width: 362px;
+    width: 75%;
     height: 18px;
     left: 50%;
     top: 30%;
     transform: translate(-50%,-30%);
     background: #D0BB73;
     border-radius: 2px;
-}
-.road{
-    position: relative;
-    width: 100%;
-    max-width: 100%;
-    min-width: 0%;
-    height: 18px;
-    background: #F59E6C;
-    border-radius: 2px;
+        @media screen and (min-width:1400px) {
+            height: 18px * 1.5;
+            border-radius: 2px * 1.5;
+        }
+    &__road{
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0%;
+        height: 100%;
+        background: #F59E6C;
+        border-radius: 2px;
+    }
 }

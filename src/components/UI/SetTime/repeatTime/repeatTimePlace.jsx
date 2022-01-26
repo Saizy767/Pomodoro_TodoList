@@ -8,39 +8,38 @@ import './setTimeText.scss'
 
 
 const WorkTimePlace = (props) => {
+
+    const repeatPlus = () =>{
+        if(Number(props.repeat)<99){
+            props.repeatChanger(Number(props.repeat)+1)
+        }
+        else{
+            props.repeatChanger(0)
+        }
+    }
+
+    const repeatMinus = () =>{
+        if(Number(props.repeat)>0){
+            props.repeatChanger(Number(props.repeat)-1)
+        }
+        else{
+            props.repeatChanger(0)
+        }
+    }
     return (
-        <div className='place_ul'>
+        <div className='repeat_ul'>
             <ul>
-                <img src={Arrow} alt='Arrow' onClick={()=>(Number(props.repeat)<99) ? props.repeatChanger(Number(props.repeat)+1): props.repeatChanger(0)}
-                                                    style={{height:'25%',
-                                                    position:'absolute',
-                                                    left:'98%',
-                                                    top:'50%',
-                                                    transform:'translate(-98%,-50%)',
-                                                    border:'solid white',
-                                                    borderRadius:'10px',
-                                                    backgroundColor:'white',
-                                                    zIndex: '1'}}></img>
+                <img src={Arrow} alt='Arrow' onClick={repeatPlus}
+                                                    className='repeat_ul__arrow'></img>
                 <SetTimeText textTime='Repeat'
                              value={props.repeat}
-                             display='none'
-                             width = '50%'
-                             height = '100px'
-                             heightInput= '90%'
-                             leftInput = '50%'
                              placeholder = {props.repeat}
-                             transformInput = 'translate(-50%,-50%)'
                             />
-                <img src={Arrow} alt='Arrow' onClick={()=>(Number(props.repeat)>0)? props.repeatChanger(Number(props.repeat)-1) : props.repeatChanger(0)}
-                                                    style={{height:'25%',
-                                                    position:'absolute',
+                <img src={Arrow} alt='Arrow' onClick={repeatMinus}
+                                                    className='repeat_ul__arrow'
+                                                    style={{
                                                     left:'2%',
-                                                    top:'50%',
-                                                    transform:'translate(-2%,50%)',
-                                                    border:'solid white',
-                                                    borderRadius:'10px',
-                                                    backgroundColor:'white',
-                                                    zIndex: '1',
+                                                    transform:'translate(-2%,70%)',
                                                     rotate:'180deg',
                                                     }}></img>
             </ul>

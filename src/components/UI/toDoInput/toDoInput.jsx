@@ -4,9 +4,9 @@ import './toDoInput.scss'
 const ToDoInput = (props) =>{
     return (
         <>
-        <li className='toDo_li'>
-        <input className='toDo_place' onChange={props.onChange}></input>
-        <span className='toDo_number'>{props.number}</span>
+        <li className='to_do_li'>
+            <input className='to_do_li__input' onKeyPress={props.onKeyPress} onChange={props.onChange}></input>
+            <span className='to_do_li__sequence'>{props.number}</span>
         </li>
         </>
     )

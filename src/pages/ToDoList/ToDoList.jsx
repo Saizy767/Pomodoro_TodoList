@@ -164,20 +164,25 @@ setRepeat((repeat) => newRepeat)
         }
       const setAllTasks = () =>{
         newTask(task,tasks.length +1)
-        if(document.getElementsByClassName('main_setTimeClockBreak__UIRp6').length !==0){
+        if(document.getElementsByClassName('li__input_break').length !==0){
           console.log('break set')
-          newMinuteRest(document.getElementsByClassName('main_setTimeClockBreak__UIRp6')[0].value,'minute','break')
-          newSecondRest(document.getElementsByClassName('main_setTimeClockBreak__UIRp6')[1].value,'second','break')
-          newHourRest(document.getElementsByClassName('main_setTimeClockBreak__UIRp6')[2].value,'hour','break')
+          newMinuteRest(document.getElementsByClassName('li__input_break')[0].value,'minute','break')
+          newSecondRest(document.getElementsByClassName('li__input_break')[1].value,'second','break')
+          newHourRest(document.getElementsByClassName('li__input_break')[2].value,'hour','break')
         }
-        if(document.getElementsByClassName('main_setTimeClockRepeat__6ktBY').length !== 0){
+        if(document.getElementsByClassName('li__input_repeat').length !== 0){
           console.log('repeat set')
-          newRepeat(document.getElementsByClassName('main_setTimeClockRepeat__6ktBY')[0].value,'repeat')
+          newRepeat(document.getElementsByClassName('li__input_repeat')[0].value,'repeat')
         }
-        if(document.getElementsByClassName('main_setTimeClockWork__3tMXF').length !== 0){
-          newMinute(document.getElementsByClassName('main_setTimeClockWork__3tMXF')[0].value, 'minute','work')
-          newSecond(document.getElementsByClassName('main_setTimeClockWork__3tMXF')[1].value, 'second','work')
-          newHour(document.getElementsByClassName('main_setTimeClockWork__3tMXF')[2].value, 'hour','work')
+        if(document.getElementsByClassName('li__input_work').length !== 0){
+          newMinute(document.getElementsByClassName('li__input_work')[0].value, 'minute','work')
+          newSecond(document.getElementsByClassName('li__input_work')[1].value, 'second','work')
+          newHour(document.getElementsByClassName('li__input_work')[2].value, 'hour','work')
+        }
+      }
+      const handleKeyPress = (event) => {
+        if(event.key === 'Enter' & counter<=5){
+          setAllTasks()
         }
       }
   
@@ -195,27 +200,26 @@ setRepeat((repeat) => newRepeat)
                   {props.breakTime && <BreakTimePlace/>}
                   {props.repeat && <Repeat/>}
                 </div>
-                <div className='set_place__to_do_list'>
-                <label style={{marginBottom:'10px', paddingLeft:'15%'}}>TodoList</label>
-                <ul style={{padding:'0px', marginTop:'13%', marginLeft:'10%'}}>
-                <ToDoInput number={counter++} onChange={(element)=>setTask(element.target.value)}/>
-                  {tasks.length <=5 ? tasks.map(()=>{
-                    return(
-                    <ToDoInput number={counter++} onChange={(element)=>setTask(element.target.value)} key={JSON.parse(counter)}/>
-                    )
-                  }
-                  ): ''}  
-                </ul>
-                { counter<=5? 
-                  <input type='image' src={Button} onClick={setAllTasks} alt='button' style={{position:'relative', left:'50%', transform:'translate(-50%)'}}></input>
-                  : ''}
-                  </div>
+                <div className='to_do_place'>
+                    <label className='to_do_place__text'>TodoList</label>
+                    <ul className='to_do_place__ul'>
+                    <ToDoInput number={counter++} onKeyPress={handleKeyPress} onChange={(element)=>setTask(element.target.value)}/>
+                        {tasks.length <=5 ? tasks.map(()=>{
+                        return(
+                    <ToDoInput number={counter++} onKeyPress={handleKeyPress} onChange={(element)=>setTask(element.target.value)} key={JSON.parse(counter)}/>
+                        )}
+                        ): ''}  
+                    </ul>
+                    { counter<=5? 
+                    <input  type='image' src={Button} onClick={setAllTasks} alt='button' className='to_do_input'></input>
+                    : ''}
+                </div>
                 <Link to='/worktime' onMouseUp={setAllTasks}>
                 <MiniButton text='START' />
                 </Link>
             </div>
         </div>
-        <div className={classes.box__shadow}></div> 
+        <div className={classes.shadow}></div> 
       </div>
     </div>
   );
@@ -230,7 +234,5 @@ const mapStateToProps = state => ({
   repeat: state.switchTimer.repeat,
 })
 
-const mapDispatchToProps = {
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
+export default connect(mapStateToProps, null)(TodoList)

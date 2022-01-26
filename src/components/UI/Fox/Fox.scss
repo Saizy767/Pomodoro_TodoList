@@ -3,15 +3,19 @@
     height: 20%;
     width:auto;
     bottom: 0;
-    right: -20%;
+    right: -100%;
     animation-name: goToFox;
     animation-duration: 6s;
+    z-index: 1000;
+    @media screen and (max-width:420px) {
+        animation-duration: 4s;
+    }
 }
 @keyframes goToFox{
     from{
-        right: -20%;
+        right: -100%;
     }
     to{
-        right: 115%;
+        right: 200%;
     }
 }

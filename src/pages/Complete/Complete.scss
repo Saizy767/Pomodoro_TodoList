@@ -1,4 +1,4 @@
-.set_place__title{
+.title{
     position: relative;
     height: 58px;
     font-size: 34px;
@@ -7,4 +7,11 @@
     top: 40%;
     transform: translate(-50%,-40%);
     color: #000000;
+    @media screen and (min-width:1400px) {
+        height: 55px * 1.5;
+        font-size: 34px * 1.5;
+    }
+    @media screen and (max-width:320px) {
+        font-size: 28px;        
+    }
 }

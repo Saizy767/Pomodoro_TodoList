@@ -1,10 +1,11 @@
-import classes from '../../box.module.scss'
-import Header from '../../components/UI/header/header'
 import React from 'react';
-import MiniButton from '../../components/UI/miniButton/miniButton'
 import { Link } from 'react-router-dom';
-import './Complete.scss'
 
+import MiniButton from '../../components/UI/miniButton/miniButton'
+import Header from '../../components/UI/header/header'
+
+import './Complete.scss'
+import classes from '../../box.module.scss'
 
 const End = () => {
   return (
@@ -14,7 +15,7 @@ const End = () => {
             <Link to='/'><Header/>
             </Link>
                 <div className={classes.set_place}>
-                    <span className='set_place__title'>Complete</span>
+                    <span className='title'>Complete</span>
                     <Link to='/menu' onClick={()=> localStorage.clear()}>
                     <MiniButton text='Create new'
                                 heightButton='36px'
@@ -25,7 +26,7 @@ const End = () => {
                     </Link>
                 </div>
             </div>
-            <div className={classes.box__shadow}></div> 
+            <div className={classes.shadow}></div> 
           </div>
         </div>
       );

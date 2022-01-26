@@ -7,16 +7,11 @@ import classes from '../../box.module.scss'
 
 
 const Home = () => {
-  const [Foxy, setFox] = useState('none')
   const [visibilityFox, setvisibilityFox] = useState(false)
-
-  if(!window){
-    setvisibilityFox(false)
-  }
 
   const handleVisibilityFroggy = () =>{
     setvisibilityFox(true)
-    setFox(visibilityFox ? 'none': '')
+    setTimeout(()=> setvisibilityFox(false), 6000)
   }
 
   return (
@@ -29,9 +24,9 @@ const Home = () => {
         </Link>
           <Link to='/menu'><Button/></Link>
         </div>
-        <div className={classes.box__shadow}></div>
+        <div className={classes.shadow}></div>
       </div>
-      <Fox display={Foxy}/>
+      {visibilityFox && <Fox/>}
     </div>
   );
 }

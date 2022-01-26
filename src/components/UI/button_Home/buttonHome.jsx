@@ -5,9 +5,9 @@ const Button = () =>{
     return (
         <>
         <div className='button_home'>
-          <span className='button_home__text'>START</span>
+          <span className='text_home'>START</span>
         </div>
-        <div className='button_home__shadow'></div>
+        <div className='shadow_home'></div>
         </>
         )
     }

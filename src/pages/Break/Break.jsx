@@ -1,31 +1,42 @@
+import React, { useState , useEffect, useMemo} from 'react'
+import { Link, useNavigate} from 'react-router-dom';
+import {Howl} from 'howler';
+
+import Header from '../../components/UI/header/header'
+import MiniButton from '../../components/UI/miniButton/miniButton'
+import ProgressBar from '../../components/UI/ProgressBar/ProgressBar';
+import TimerSong from '../../song/Timer.mp3'
+
 import './Break.scss'
 import classes from '../../box.module.scss'
-import Header from '../../components/UI/header/header'
-import React, { useState } from 'react'
-import MiniButton from '../../components/UI/miniButton/miniButton'
-import { Link, useNavigate} from 'react-router-dom';
-import ProgressBar from '../../components/UI/ProgressBar/ProgressBar';
-import { connect } from 'react-redux';
-import { breakHourChanger,breakMinuteChanger,breakSecondChanger} from '../../redux/actions/actionChangeBreakTimer';
-
-
-
 
 
 const Break = (props) => {
     let history = useNavigate()
+
     const startHour= JSON.parse(localStorage.HourR).number
     const startMinute= JSON.parse(localStorage.MinuteR).number
     const startSecond= JSON.parse(localStorage.SecondR).number
+
     const [time, setTime]= useState(Number(startHour) * 3600 + Number(startMinute) * 60 + Number(startSecond))
     const startTime = Number(startHour) * 3600 + Number(startMinute) * 60 + Number(startSecond)
+
     let [isPaused, setIsPaused]=useState(false)
     let timeRef = React.useRef(time)
     let isPausedRef = React.useRef(isPaused)
     let intervalRef = React.useRef() 
     let road = (time* 100)/startTime
+
+    const sound = useMemo(()=> new Howl({
+        src: [TimerSong],
+        loop: true,
+        volume: 1,})
+        ,[])
+
+    if(timeRef.current === 0){
+      sound.play()}
     
-    React.useEffect(() => {
+    useEffect(() => {
       if (isPausedRef.current){
         return stop()
       }
@@ -34,15 +45,15 @@ const Break = (props) => {
       {
         if (timeRef.current <= 0){
           stop()
+          sound.play()
           return history('/breaktime')
         }
         else{
-        console.log('start')
         return start()
         }
       },1000)}
 },
-[isPaused, history])
+[isPaused, history, sound])
       function start(){
         console.log('start was called')
         return setTime(timeRef.current-=1)
@@ -68,42 +79,29 @@ const Break = (props) => {
     if(second < 10) second = '0'+ second
     if(minute < 10) minute = '0'+ minute
     if(hour < 10) hour = '0'+ hour
-    console.log(road)
   return (
         <div className={classes.background}>
           <div className={classes.box}>
             <div className={classes.box__page}>
-            <Link to='/menu' onClick={() => { stop(); localStorage.clear();}}><Header/></Link>
+            <Link to='/menu' onClick={() => { stop(); localStorage.clear(); sound.stop()}}><Header/></Link>
               <div className={classes.set_place} style={{display:'flex', flexDirection:'column'}}>
-                    <span className='title'>BREAK</span>
-                    <div className='time'>{hour+ ':' + minute + ':' + second}</div>
+                    <span className='set_place__title'>BREAK</span>
+                    <div className='set_place__timer'>{hour+ ':' + minute + ':' + second}</div>
                     <ProgressBar road={(100 - road) + '%'}/>
-                    <div className='menu_buttons'>
+                    <div className='set_place__menu_buttons menu_buttons'>
                       {isPaused
                       ? <MiniButton function = {() =>falseChanger()} text='Start' position='relative' flex='1'/> :
                       <MiniButton function = {() =>trueChanger()} text='Pause' position='relative' flex='1'/>}
-                      <Link to='/worktime' onClick={() => stop()} style={{position:'relative', flex:1}}>
+                      <Link to='/worktime' style={{position:'relative', flex:1}} onClick={() => {sound.stop(); stop()}}>
                         <MiniButton text='Next'/>
                       </Link>
                     </div>
                 </div>
             </div>
-            <div className={classes.box__shadow}></div> 
+            <div className={classes.shadow}></div> 
           </div>
         </div>
       );
     }
-    
-    const mapStateToProps = state =>({
-      hour: state.breakTimer.breakHour,
-      minute: state.breakTimer.breakMinute,
-      second: state.breakTimer.breakSecond,
 
-    })
-    const mapDispatchToProps = {
-      breakHourChanger,
-      breakMinuteChanger,
-      breakSecondChanger
-    }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Break)
+export default Break

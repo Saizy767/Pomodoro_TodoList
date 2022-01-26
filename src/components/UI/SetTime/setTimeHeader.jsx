@@ -139,36 +139,36 @@ const SetTimeHeader = (props) => {
    useEffect(
         () => {
             if (timeRef.current === 0){
-                if(document.getElementsByClassName('main_setTimeClockRepeat__6ktBY').length !== 0){
-                    newRepeat(document.getElementsByClassName('main_setTimeClockRepeat__6ktBY')[0].value,'repeat')
+                if(document.getElementsByClassName('li__input_repeat').length !== 0){
+                    newRepeat(document.getElementsByClassName('li__input_repeat')[0].value,'repeat')
                 }
-                if(document.getElementsByClassName('main_setTimeClockBreak__UIRp6').length !==0){
-                    newMinuteRest(document.getElementsByClassName('main_setTimeClockBreak__UIRp6')[0].value,'minute','break')
-                    newSecondRest(document.getElementsByClassName('main_setTimeClockBreak__UIRp6')[1].value,'second','break')
-                    newHourRest(document.getElementsByClassName('main_setTimeClockBreak__UIRp6')[2].value,'hour','break')
+                if(document.getElementsByClassName('li__input_break').length !==0){
+                    newMinuteRest(document.getElementsByClassName('li__input_break')[0].value,'minute','break')
+                    newSecondRest(document.getElementsByClassName('li__input_break')[1].value,'second','break')
+                    newHourRest(document.getElementsByClassName('li__input_break')[2].value,'hour','break')
                 }
                 return props.switchWorkTime()
             }
             else if (timeRef.current === 1){
-                if (document.getElementsByClassName('main_setTimeClockWork__3tMXF').length !== 0){
-                newMinute(document.getElementsByClassName('main_setTimeClockWork__3tMXF')[0].value, 'minute','work')
-                newSecond(document.getElementsByClassName('main_setTimeClockWork__3tMXF')[1].value, 'second','work')
-                newHour(document.getElementsByClassName('main_setTimeClockWork__3tMXF')[2].value, 'hour','work')}
-                if(document.getElementsByClassName('main_setTimeClockRepeat__6ktBY').length !==0){
-                newRepeat(document.getElementsByClassName('main_setTimeClockRepeat__6ktBY')[0].value,'repeat')
+                if (document.getElementsByClassName('li__input_work').length !== 0){
+                newMinute(document.getElementsByClassName('li__input_work')[0].value, 'minute','work')
+                newSecond(document.getElementsByClassName('li__input_work')[1].value, 'second','work')
+                newHour(document.getElementsByClassName('li__input_work')[2].value, 'hour','work')}
+                if(document.getElementsByClassName('li__input_repeat').length !==0){
+                newRepeat(document.getElementsByClassName('li__input_repeat')[0].value,'repeat')
                 }
                 return props.switchBreakTime()
             }
             else if (timeRef.current === 2){
-                if (document.getElementsByClassName('main_setTimeClockWork__3tMXF').length !== 0){
-                    newMinute(document.getElementsByClassName('main_setTimeClockWork__3tMXF')[0].value, 'minute','work')
-                    newSecond(document.getElementsByClassName('main_setTimeClockWork__3tMXF')[1].value, 'second','work')
-                    newHour(document.getElementsByClassName('main_setTimeClockWork__3tMXF')[2].value, 'hour','work')}
+                if (document.getElementsByClassName('li__input_work').length !== 0){
+                    newMinute(document.getElementsByClassName('li__input_work')[0].value, 'minute','work')
+                    newSecond(document.getElementsByClassName('li__input_work')[1].value, 'second','work')
+                    newHour(document.getElementsByClassName('li__input_work')[2].value, 'hour','work')}
             }
-            if(document.getElementsByClassName('main_setTimeClockBreak__UIRp6').length !==0){
-                newMinuteRest(document.getElementsByClassName('main_setTimeClockBreak__UIRp6')[0].value,'minute','break')
-                newSecondRest(document.getElementsByClassName('main_setTimeClockBreak__UIRp6')[1].value,'second','break')
-                newHourRest(document.getElementsByClassName('main_setTimeClockBreak__UIRp6')[2].value,'hour','break')
+            if(document.getElementsByClassName('li__input_break').length !==0){
+                newMinuteRest(document.getElementsByClassName('li__input_break')[0].value,'minute','break')
+                newSecondRest(document.getElementsByClassName('li__input_break')[1].value,'second','break')
+                newHourRest(document.getElementsByClassName('li__input_break')[2].value,'hour','break')
             }
                 return props.switchRepeat()
         },
@@ -196,12 +196,12 @@ const SetTimeHeader = (props) => {
     }
 
     return (
-        <header className='header' style={{paddingTop:props.paddingTop}}>
-            <MdKeyboardArrowLeft onClick={()=>handleMinusTime()} className='arrow'/>
-                <label className='label'>
+        <header className='set_time_header' style={{paddingTop:props.paddingTop}}>
+            <MdKeyboardArrowLeft onClick={()=>handleMinusTime()} className='set_time_header__arrow'/>
+                <label className='set_time_header__label'>
                {timesOfPomodora[time].name}
                 </label>
-            <MdKeyboardArrowRight onClick={()=>handlePlusTime()} className='arrow'/>
+            <MdKeyboardArrowRight onClick={()=>handlePlusTime()} className='set_time_header__arrow'/>
         </header>
     )
 }

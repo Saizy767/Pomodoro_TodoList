@@ -7,7 +7,7 @@ import './setTimeText.scss'
 
 const BreakTimePlace = (props) => {
     return (
-        <div className='place_ul'>
+        <div className='break_ul'>
             <ul>
                 <SetTimeText textTime='MINUTES'
                              maxValue='60'
@@ -22,7 +22,6 @@ const BreakTimePlace = (props) => {
                              placeholder = {JSON.parse(localStorage.HourR).number}
                              value={props.hour}/>
             </ul>
-            {console.log(props.minute)}
         </div>
     )
 }

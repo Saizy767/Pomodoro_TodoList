@@ -1,7 +1,10 @@
+$standart_button_home_width:285px;
+$standart_button_home_height:108px;
+
 .button_home{
     position: absolute;
-    width: 285px;
-    height: 108px;
+    width: $standart_button_home_width;
+    height: $standart_button_home_height;
     display: block;
     top: 60%;
     left: 50%;
@@ -9,30 +12,36 @@
     background: #FFFFFF;
     border-radius: 11px;
     z-index: 3;
-
+    @media screen and (min-width:1400px){
+        width: calc($standart_button_home_width * 1.5);
+        height: calc($standart_button_home_height * 1.5);
+    }
     &:active{
         transform: translate(-50%, -50%);
     }
-}
-.button_home__text{
-    position:absolute;
-    font-size: 34px;
-    font-family: 'PressStart2P';
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    color: #FC0000;
-}
-.button_home__shadow{
-    position: absolute;
-    width: 285px;
-    height: 108px;
-    display: block;
-    top: calc(60% + 8px);
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    background: #E8E8E8;
-    border-radius: 11px;
-    z-index: 2;
-}
+    .text_home{
+        position:absolute;
+        font-size: 34px;
+        font-family: 'PressStart2P';
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: #FC0000;    
+        @media screen and (min-width:1400px){
+            font-size: calc(34px * 1.5);
+        }}}
+.shadow_home{
+        position: absolute;
+        width: $standart_button_home_width;
+        height: $standart_button_home_height;
+        display: block;
+        top: calc(60% + 8px);
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #E8E8E8;
+        border-radius: 11px;
+        z-index: 2;
+        @media screen and (min-width:1400px){
+            width: calc($standart_button_home_width * 1.5);
+            height: calc($standart_button_home_height * 1.5);
+}}

@@ -36,15 +36,15 @@ const SetTimeText = (props) => {
   },[props])
     return(
         <>
-        <li className='place_li'>
-            <input className='time_setter_break' value={props.value}
+        <li className='break_li li'>
+            <input className='li__input_break' value={props.value}
                                                     onChange={handleChange}
                                                     placeholder= {props.placeholder ||  '--'}
                                                     maxLength='2'
                     style={{width:props.width, height:props.heightInput, transform:props.transformInput, left:props.leftInput}} 
         ></input>
-            <div className='time_type' style={{display:props.display}}>{props.textTime}</div>
-            <div className='place_time' style={{height:props.height}} ></div>
+            <div className='li__time_type' style={{display:props.display}}>{props.textTime}</div>
+            <div className='li__time_place' style={{height:props.height}} ></div>
         </li>
         {console.log(JSON.parse(localStorage.MinuteR).number + ' child')}
         </>

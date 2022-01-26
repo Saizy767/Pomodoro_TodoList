@@ -1,51 +1,73 @@
-.time_setter_break{
-    padding-top: 2px;
-    text-align: center;
-    font-size: 11px;
-    position: absolute;
-    flex: 0;
-    left: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20%;
-    height: 14px;
-    background-color: #FFFFFF;
-    border-radius: 3px;
-    font-family: PressStart2P;
-}
-.time_type{
-    padding-top: 4px;
-    text-align: center;
-    flex:1;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 8px;
-    color: #000000;
-    right: 3%;
-    position: absolute;
-    width: 65%;
-    height: 12px;
-    background-color: #FFFFFF;
-    border-radius: 4px;
-}
-.place_time{
-    margin-bottom: 6px;
-    width: 100%;
-    height: 24px;
-    background-color: #000000;
-    border-radius: 8px;
-    display: flex;
-}
-.place_ul{
+.break_ul{
     position: relative;
     top: 10%;
     left: 50%;
     transform: translate(-50%,-10%);
     text-align: center;
-    width: 70%;
-    max-width: 180px;
-}
-.place_li{
-    list-style: none;
-    position: relative;
+    width: 180px;
+    height: 84px;
+    @media screen and (min-width:1400px){
+        width: calc(180px * 1.5);
+        height: calc(84px * 1.5);
+    }
+    .li{
+        list-style: none;
+        position: relative;
+        &__input_break{
+            padding-top: 2px;
+            text-align: center;
+            font-size: 11px;
+            position: absolute;
+            flex: 0;
+            left: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20%;
+            height: 14px;
+            background-color: #FFFFFF;
+            border-radius: 3px;
+            font-family: PressStart2P;
+        @media screen and (min-width:1400px) {
+            padding-top: calc(2px * 1.5);
+            font-size: calc(11px * 1.5);
+            height: calc(14px * 1.5);
+            border-radius: calc(3px * 1.5);
+        }
+        }
+        &__time_place{
+            margin-bottom: 6px;
+            width: 100%;
+            height: 24px;
+            background-color: #000000;
+            border-radius: 8px;
+            display: flex;
+            @media screen and (min-width:1400px) {
+                height: calc(24px * 1.5);
+                border-radius: calc(8px * 1.5);
+                margin-bottom: calc(6px * 1.5);
+
+            }
+        }
+        &__time_type{
+            padding-top: 4px;
+            text-align: center;
+            flex:1;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8px;
+            color: #000000;
+            right: 3%;
+            position: absolute;
+            width: 65%;
+            height: 12px;
+            background-color: #FFFFFF;
+            border-radius: 4px;
+            @media screen and (min-width:1400px) {
+                font-size: calc(8px * 1.5);
+                padding-top: calc(4px * 1.5);
+                height: calc(12px * 1.5);
+                border-radius: calc(4px * 1.5);
+            }
+        }
+    }
 }

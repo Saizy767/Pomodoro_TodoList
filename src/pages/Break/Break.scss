@@ -1,36 +1,43 @@
-.title{
-    width: -webkit-fit-content;
-    left: 50%;
-    top: 15%;
-    position: relative;
-    height:35px;
-    transform: translate(-50%,-15%);
-    font-family: 'PressStart2P';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 29px;
-    line-height: 29px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #F55050;
-}
-.time{
-    position: relative;
-    width: -webkit-fit-content;
-    height: 55px;
-    left: 50%;
-    top: 25%;
-    transform: translate(-50%,-25%);
-    font-family: Press Start 2P;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 34px;
-    line-height: 34px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #FFFFFF;
+.set_place{
+    &__title{
+        width: -webkit-fit-content;
+        left: 50%;
+        top: 15%;
+        position: relative;
+        height:35px;
+        transform: translate(-50%,-15%);
+        font-family: 'PressStart2P';
+        font-size: 29px;
+        display: flex;
+        text-align: center;
+        color: #F55050;
+        @media screen and (min-width:1400px) {
+            height: 35px * 1.5;
+            font-size: 29px * 1.5;
+        }
+        @media screen and (max-width:320px) {
+            height: calc(55px / 1.5);
+            font-size: 28px;
+        }
+    }
+    &__timer{
+        position: relative;
+        width: -webkit-fit-content;
+        height: 55px;
+        left: 50%;
+        top: 25%;
+        transform: translate(-50%,-25%);
+        font-size: 34px;
+        text-align: center;
+        color: #FFFFFF;
+        @media screen and (min-width:1400px) {
+            height: 55px * 1.5;
+            font-size: 34px * 1.5;
+        }
+        @media screen and (max-width:320px) {
+            font-size: 28px;
+        }
+    }
 }
 .menu_buttons{
     position:absolute;

@@ -10,7 +10,7 @@ const MiniButton= (props) => {
             <div className='button_mini'
 >                <span className='button_mini__text'>{props.text}</span>
             </div>
-            <div className='button_mini__shadow' >
+            <div className='button_mini_shadow' >
             </div>
         </div>
     )

@@ -11,15 +11,14 @@ const SetTimeText = (props) => {
   },[props])
     return(
         <>
-        <li className='place_li'>
-            <input className='time_setter' value={props.value}
+        <li className='repeat_li li'>
+            <input className='li__input_repeat' value={props.value}
                                                     onChange={handleChange}
                                                     placeholder={JSON.parse(localStorage.Repeat).number || '--'} 
                                                     maxLength='2'
-                    style={{width:props.width, height:props.heightInput, transform:props.transformInput, left:props.leftInput}} 
         ></input>
-            <div className='time_type' style={{display:props.display}}>{props.textTime}</div>
-            <div className='place_time' style={{height:props.height}}></div>
+            <div className='li__time_type_repeat'>{props.textTime}</div>
+            <div className='li__time_repeat'></div>
         </li>
         </>
     )

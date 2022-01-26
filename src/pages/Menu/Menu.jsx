@@ -1,8 +1,12 @@
-import classes from '../../box.module.scss'
 import {React, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+
 import Header from '../../components/UI/header/header'
 import MenuButton from '../../components/UI/menuButton/menuButton';
-import { Link } from 'react-router-dom';
+
+import './Menu.scss'
+import classes from '../../box.module.scss'
+
 
 const Menu = (props) => {
   useEffect(()=>{
@@ -24,7 +28,7 @@ const Menu = (props) => {
         <div className={classes.box__page}>
             <Link to='/'><Header/>
             </Link>
-              <div>
+              <div className='menu'>
                 <Link to='/todo'>
                 <MenuButton color='#FFE793'
                             text='Create to do list with timer'
@@ -41,7 +45,7 @@ const Menu = (props) => {
                 </Link>
             </div>
         </div>
-        <div className={classes.box__shadow}></div> 
+        <div className={classes.shadow}></div> 
       </div>
     </div>
   );

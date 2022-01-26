@@ -7,7 +7,7 @@ import './setTimeText.scss'
 
 const WorkTimePlace = (props) => {
     return (
-        <div className='place_ul'>
+        <div className='work_ul'>
             <ul>
                 <SetTimeText    textTime='MINUTES'
                                 maxValue='60'

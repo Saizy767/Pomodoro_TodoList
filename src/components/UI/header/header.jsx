@@ -23,7 +23,7 @@ const Header = (props) =>{
         <div className='head_place' style={{transform:props.transform}} onMouseDown={handleChangeColorText} onMouseUp={handleChangeColorText} onMouseOver={handleChangeColorTextOver}>
           <span className='head_place__text' style={{color: textColor}}>POMODORO TIMER</span>
         </div>
-        <div className='head_place__shadow'></div>
+        <div className='head_place_shadow'></div>
       </>
     )
 }
