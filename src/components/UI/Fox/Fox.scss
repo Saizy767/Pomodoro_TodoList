@@ -7,7 +7,7 @@
     animation-name: goToFox;
     animation-duration: 6s;
     z-index: 1000;
-    @media screen and (max-width:420px) {
+    @media screen and (max-width:450px) {
         animation-duration: 4s;
     }
 }

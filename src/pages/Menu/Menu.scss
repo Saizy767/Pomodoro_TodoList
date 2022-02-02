@@ -1,6 +1,7 @@
 .menu{
     position: relative;
-    @media screen and (max-width:420px){
-        bottom: 8%;
+    bottom: 20%;
+    @media screen and (max-width:450px){
+        bottom: 0;
     }
 }
