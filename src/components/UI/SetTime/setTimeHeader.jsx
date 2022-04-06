@@ -1,8 +1,8 @@
-import React, {useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState } from "react";
 import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from 'react-icons/md'
 import { connect } from "react-redux";
 
-import {timesOfPomodora} from '../../../data/data'
+import {timesOfPomodora} from '../../../data/timesOfPomodoro'
 import { switchWorkTime } from "../../../redux/actions/actionSwitchTimePlace";
 import { switchBreakTime } from "../../../redux/actions/actionSwitchTimePlace"
 import { switchRepeat } from "../../../redux/actions/actionSwitchTimePlace"
@@ -173,8 +173,8 @@ const SetTimeHeader = (props) => {
                 return props.switchRepeat()
         },
         [props,time])
-    const handlePlusTime = () =>{
 
+    const handlePlusTime = useCallback(() =>{
         if (time >= timesOfPomodora.length - 1){
             setTime(0)
             timeRef.current = 0
@@ -183,8 +183,9 @@ const SetTimeHeader = (props) => {
             setTime(time+1)
             timeRef.current++
         }
-    }
-    const handleMinusTime = () =>{
+    },[time, timeRef])
+
+    const handleMinusTime = useCallback(() =>{
         if (time <= 0){
             setTime(timesOfPomodora.length - 1)
             timeRef.current = timesOfPomodora.length - 1
@@ -193,13 +194,13 @@ const SetTimeHeader = (props) => {
             setTime(time-1)
             timeRef.current--
         }
-    }
+    },[time, timeRef])
 
     return (
         <header className='set_time_header' style={{paddingTop:props.paddingTop}}>
             <MdKeyboardArrowLeft onClick={()=>handleMinusTime()} className='set_time_header__arrow'/>
                 <label className='set_time_header__label'>
-               {timesOfPomodora[time].name}
+                    {timesOfPomodora[time].name}
                 </label>
             <MdKeyboardArrowRight onClick={()=>handlePlusTime()} className='set_time_header__arrow'/>
         </header>

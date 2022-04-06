@@ -26,23 +26,22 @@ const Menu = (props) => {
     <div className={classes.background}>
       <div className={classes.box}>
         <div className={classes.box__page}>
-            <Link to='/'><Header/>
-            </Link>
-              <div className='menu'>
-                <Link to='/todo'>
-                <MenuButton color='#FFE793'
-                            text='Create to do list with timer'
-                            backgroundcolor='#E5D084'
-                            transformMain='translateY(10%)'
-                            />
-                </Link>
-                <Link to='/settime'>
-                <MenuButton color='#FFB7A0'
-                            text='Select timer'
-                            backgroundcolor='#E0A18D'
-                            />
+            <Link to='/'><Header/></Link>
+            <div className='menu'>
+              <Link to='/todo'>
+              <MenuButton color='#FFE793'
+                          text='Create to do list with timer'
+                          backgroundcolor='#E5D084'
+                          transformMain='translateY(10%)'
+                          />
+              </Link>
+              <Link to='/settime'>
+              <MenuButton color='#FFB7A0'
+                          text='Select timer'
+                          backgroundcolor='#E0A18D'
+                          />
                     
-                </Link>
+              </Link>
             </div>
         </div>
         <div className={classes.shadow}></div> 

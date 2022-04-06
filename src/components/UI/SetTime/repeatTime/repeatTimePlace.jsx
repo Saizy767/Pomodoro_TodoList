@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { connect } from "react-redux";
 
 import SetTimeText from './setRepeatTime';
@@ -9,23 +9,24 @@ import './setTimeText.scss'
 
 const WorkTimePlace = (props) => {
 
-    const repeatPlus = () =>{
+    const repeatPlus = useCallback(() =>{
         if(Number(props.repeat)<99){
             props.repeatChanger(Number(props.repeat)+1)
         }
         else{
             props.repeatChanger(0)
         }
-    }
+    },[props])
 
-    const repeatMinus = () =>{
+    const repeatMinus = useCallback(() =>{
         if(Number(props.repeat)>0){
             props.repeatChanger(Number(props.repeat)-1)
         }
         else{
             props.repeatChanger(0)
         }
-    }
+    },[props])
+    
     return (
         <div className='repeat_ul'>
             <ul>

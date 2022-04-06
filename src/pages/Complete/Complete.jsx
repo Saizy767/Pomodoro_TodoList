@@ -12,19 +12,18 @@ const End = () => {
         <div className={classes.background}>
           <div className={classes.box}>
             <div className={classes.box__page}>
-            <Link to='/'><Header/>
-            </Link>
-                <div className={classes.set_place}>
-                    <span className='title'>Complete</span>
-                    <Link to='/menu' onClick={()=> localStorage.clear()}>
-                    <MiniButton text='Create new'
-                                heightButton='36px'
-                                widthButton='220px'
-                                topButton='80%'
-                                topButtonShadow='calc(80% + 10px)'
-                                transformButton='translate(-50%,-80%)'/>
-                    </Link>
-                </div>
+            <Link to='/'><Header/></Link>
+              <div className={classes.set_place}>
+                  <span className='title'>Complete</span>
+                  <Link to='/menu' onClick={()=> localStorage.clear()}>
+                  <MiniButton text='Create new'
+                              heightButton='36px'
+                              widthButton='220px'
+                              topButton='80%'
+                              topButtonShadow='calc(80% + 10px)'
+                              transformButton='translate(-50%,-80%)'/>
+                  </Link>
+              </div>
             </div>
             <div className={classes.shadow}></div> 
           </div>

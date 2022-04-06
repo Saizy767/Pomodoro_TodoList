@@ -54,19 +54,21 @@ const Break = (props) => {
       },1000)}
 },
 [isPaused, history, sound])
+
       function start(){
-        console.log('start was called')
         return setTime(timeRef.current-=1)
       }
+
       function stop(){
-        console.log('stop was called')
         return clearInterval(intervalRef.current)
       }
+
       function falseChanger() {
         if(time>0){
         setIsPaused(false)
         isPausedRef.current = false}
       }
+
       function trueChanger() {
         if (time>0){
         setIsPaused(true)
@@ -76,9 +78,11 @@ const Break = (props) => {
     let hour = Math.floor(time / 3600)
     let minute = Math.floor((time - (hour * 3600)) / 60 )
     let second = time % 60
-    if(second < 10) second = '0'+ second
-    if(minute < 10) minute = '0'+ minute
-    if(hour < 10) hour = '0'+ hour
+
+    second = second < 10 ? '0' + second: second
+    minute = minute < 10 ? '0' + minute: minute
+    hour = hour < 10 ? '0' + hour: hour
+
   return (
         <div className={classes.background}>
           <div className={classes.box}>
@@ -91,7 +95,7 @@ const Break = (props) => {
                     <div className='set_place__menu_buttons menu_buttons'>
                       {isPaused
                       ? <MiniButton function = {() =>falseChanger()} text='Start' position='relative' flex='1'/> :
-                      <MiniButton function = {() =>trueChanger()} text='Pause' position='relative' flex='1'/>}
+                        <MiniButton function = {() =>trueChanger()} text='Pause' position='relative' flex='1'/>}
                       <Link to='/worktime' style={{position:'relative', flex:1}} onClick={() => {sound.stop(); stop()}}>
                         <MiniButton text='Next'/>
                       </Link>

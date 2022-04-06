@@ -138,8 +138,8 @@ function newRepeat(number,type){
         number,
         type
     }
-setRepeat((repeat) => newRepeat)
-  }
+    setRepeat((repeat) => newRepeat)
+}
       let counter = 1
       //todolist
 

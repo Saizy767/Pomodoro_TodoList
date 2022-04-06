@@ -188,7 +188,5 @@ const SetTime = (props) =>{
     repeat: state.switchTimer.repeat,
   })
   
-  const mapDispatchToProps = {
-  }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SetTime)
+export default connect(mapStateToProps, null)(SetTime)

@@ -98,33 +98,35 @@ const Work = (props) => {
     let hour = Math.floor(time / 3600)
     let minute = Math.floor((time - (hour * 3600)) / 60 )
     let second = time % 60
-    if(second < 10) second = '0'+ second
-    if(minute < 10) minute = '0'+ minute
-    if(hour < 10) hour = '0'+ hour
+
+    second = second < 10 ? '0' + second: second
+    minute = minute < 10 ? '0' + minute: minute
+    hour = hour < 10 ? '0' + hour: hour
   return (
         <div className={classes.background}>
           <div className={classes.box}>
             <div className={classes.box__page}>
-            <Link to='/menu' onClick={() => { stop(); localStorage.clear(); sound.stop()}}><Header/></Link>
+              <Link to='/menu' onClick={() => { stop(); localStorage.clear(); sound.stop()}}><Header/></Link>
               <div className={classes.set_place} style={{display:'flex', flexDirection:'column'}}>
-                    <span className='set_place__title' style={{flex:'0 1 -1px'}}>{JSON.parse(localStorage.Tasks).length !==0 ? JSON.parse(localStorage.Tasks)[currentTask].item: 'WORK'}</span>
-                    <div className='set_place__timer' style={{flex:'1 1 -1px'}}>{hour+ ':' + minute + ':' + second}</div>
-                    <ProgressBar road={(100 - road) + '%'}/>
-                    <div className='set_place__menu_buttons menu_buttons'>
-                      {isPaused
-                      ? <MiniButton function = {() =>falseChanger()} text='Start' position='relative' flex='1'/> :
+                <span className='set_place__title' style={{flex:'0 1 -1px'}}>{JSON.parse(localStorage.Tasks).length !==0 ? JSON.parse(localStorage.Tasks)[currentTask].item: 'WORK'}</span>
+                <div className='set_place__timer' style={{flex:'1 1 -1px'}}>{hour+ ':' + minute + ':' + second}</div>
+                <ProgressBar road={(100 - road) + '%'}/>
+                <div className='set_place__menu_buttons menu_buttons'>
+                  {isPaused
+                    ? <MiniButton function = {() =>falseChanger()} text='Start' position='relative' flex='1'/> :
                       <MiniButton function = {() =>trueChanger()} text='Pause' position='relative' flex='1'/>}
-                      <Link to={JSON.parse(localStorage.Repeat).number <= JSON.parse(localStorage.CurrentRepeat) ? '/complete': '/breaktime'}
-                            style={{position:'relative', flex:1}}
-                            onMouseUp={()=>nextPage()}
-                            onClick={()=> sound.stop()}>
-                        <MiniButton text='Next'/>
-                      </Link>
-                    </div>
+                  <Link to={JSON.parse(localStorage.Repeat).number <= JSON.parse(localStorage.CurrentRepeat) 
+                        ? '/complete': '/breaktime'}
+                        style={{position:'relative', flex:1}}
+                        onMouseUp={()=>nextPage()}
+                        onClick={()=> sound.stop()}>
+                      <MiniButton text='Next'/>
+                  </Link>
                 </div>
+              </div>
             </div>
             <div className={classes.shadow}></div> 
-          </div>
+         </div>
         </div>
       );
     }
