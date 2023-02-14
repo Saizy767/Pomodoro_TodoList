@@ -1,7 +1,7 @@
 .menu{
-    position: relative;
-    bottom: 20%;
-    @media screen and (max-width:450px){
-        bottom: 0;
-    }
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
 }

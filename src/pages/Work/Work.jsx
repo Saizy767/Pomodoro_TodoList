@@ -1,24 +1,25 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { Link} from 'react-router-dom';
 import {Howl} from 'howler';
 
-import Header from '../../components/UI/header/header'
-import MiniButton from '../../components/UI/miniButton/miniButton'
-import ProgressBar from '../../components/UI/ProgressBar/ProgressBar';
+import Header from '../../components/header/header'
+import MiniButton from '../../components/miniButton/miniButton'
+import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import TimerSong from '../../song/Timer.mp3'
 
-import classes from '../../box.module.scss'
+import classes from '../../styles/box.module.scss'
 import './Work.scss'
 
 
 const Work = (props) => {
-    const startHour= JSON.parse(localStorage.Hour).number
-    const startMinute= JSON.parse(localStorage.Minute).number
-    const startSecond= JSON.parse(localStorage.Second).number
+    const startHour= parseInt(JSON.parse(localStorage.Hour).number)
+    const startMinute= parseInt(JSON.parse(localStorage.Minute).number)
+    const startSecond= parseInt(JSON.parse(localStorage.Second).number)
 
-    const [time, setTime]= useState(Number(startHour) * 3600 + Number(startMinute) * 60 + Number(startSecond))
-    const startTime = Number(startHour) * 3600 + Number(startMinute) * 60 + Number(startSecond)
+    const [time, setTime]= useState(startHour * 3600 + startMinute * 60 + startSecond)
     const [isPaused, setIsPaused]=useState(false)
+
+    const startTime = startHour * 3600 + startMinute * 60 + startSecond
 
     let timeRef = React.useRef(time)
     let isPausedRef = React.useRef(isPaused)
@@ -43,7 +44,7 @@ const Work = (props) => {
     }
     ,[currentTask])
 
-    const sound = useMemo(()=> new Howl({
+    const sound = useCallback(()=> new Howl({
         src: [TimerSong],
         loop: true,
         volume: 1,})
@@ -61,15 +62,12 @@ const Work = (props) => {
           stop()
         }
         else{
-        return start()
+        return setTime(timeRef.current-=1)
         }
       },1000)}
 },
 [isPaused,counter, sound])
 
-      function start(){
-        return setTime(timeRef.current-=1)
-      }
       function stop(){
         return clearInterval(intervalRef.current)
       }

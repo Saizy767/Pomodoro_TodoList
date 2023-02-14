@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import MiniButton from '../../components/UI/miniButton/miniButton'
-import Header from '../../components/UI/header/header'
+import MiniButton from '../../components/miniButton/miniButton'
+import Header from '../../components/header/header'
 
 import './Complete.scss'
-import classes from '../../box.module.scss'
+import classes from '../../styles/box.module.scss'
 
 const End = () => {
   return (

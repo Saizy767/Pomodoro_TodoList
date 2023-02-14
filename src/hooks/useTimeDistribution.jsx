@@ -1,18 +1,9 @@
-import React, {useCallback, useEffect, useState } from "react";
-import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from 'react-icons/md'
-import { connect } from "react-redux";
+import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
 
-import {timesOfPomodora} from '../../../data/timesOfPomodoro'
-import { switchWorkTime } from "../../../redux/actions/actionSwitchTimePlace";
-import { switchBreakTime } from "../../../redux/actions/actionSwitchTimePlace"
-import { switchRepeat } from "../../../redux/actions/actionSwitchTimePlace"
-
-import './setTimeHeader.scss'
-
-const SetTimeHeader = (props) => {
-    let [time, setTime] = useState(0)
-    let timeRef = React.useRef(time)
-    // work
+export const useTimeDistribution = (timeRef, switchWorkTime, switchBreakTime, switchRepeat, handleOperatorTime) => {
+    const dispatch = useDispatch()
+    
     let [allMinutes, setAllMinutes] = useState(
         JSON.parse(localStorage.getItem('Minute')) || ''
     )
@@ -25,18 +16,15 @@ const SetTimeHeader = (props) => {
 
     useEffect(()=>{
         localStorage.setItem('Minute', JSON.stringify(allMinutes))
-    }
-    ,[allMinutes,props])
+    },[allMinutes])
 
     useEffect(()=>{
         localStorage.setItem('Second', JSON.stringify(allSeconds))
-    }
-    ,[allSeconds])
+    },[allSeconds])
 
     useEffect(()=>{
         localStorage.setItem('Hour', JSON.stringify(allHours))
-    }
-    ,[allHours])
+    },[allHours])
 
     function newMinute(number,time,type){
             let newMinute = {
@@ -44,7 +32,7 @@ const SetTimeHeader = (props) => {
                 time,
                 type
             }
-        setAllMinutes((allMinutes) => newMinute)
+        setAllMinutes(() => newMinute)
         }
     
     function newHour(number,time,type){
@@ -53,7 +41,7 @@ const SetTimeHeader = (props) => {
                 time,
                 type
             }
-        setAllHours((allHours) => newHour)
+        setAllHours(() => newHour)
         }
 
     function newSecond(number,time,type){ 
@@ -62,9 +50,9 @@ const SetTimeHeader = (props) => {
                 time,
                 type
             }
-        setAllSeconds((allSeconds) => newSecond)
+        setAllSeconds(() => newSecond)
         }
-    //break
+
     const [allMinutesRest, setAllMinutesRest] = useState(
         JSON.parse(localStorage.getItem('MinuteR')) || ''
     )
@@ -77,18 +65,15 @@ const SetTimeHeader = (props) => {
 
     useEffect(()=>{
         localStorage.setItem('MinuteR', JSON.stringify(allMinutesRest))
-    }
-    ,[allMinutesRest])
+    },[allMinutesRest])
 
     useEffect(()=>{
         localStorage.setItem('SecondR', JSON.stringify(allSecondsRest))
-    }
-    ,[allSecondsRest])
+    },[allSecondsRest])
 
     useEffect(()=>{
         localStorage.setItem('HourR', JSON.stringify(allHoursRest))
-    }
-    ,[allHoursRest])
+    },[allHoursRest])
 
     function newMinuteRest(number,time,type){
             let newMinuteRest = {
@@ -96,7 +81,7 @@ const SetTimeHeader = (props) => {
                 time,
                 type
             }
-        setAllMinutesRest((allMinutesRest) => newMinuteRest)
+        setAllMinutesRest(() => newMinuteRest)
         }
     
     function newHourRest(number,time,type){
@@ -105,7 +90,7 @@ const SetTimeHeader = (props) => {
                 time,
                 type
             }
-        setAllHoursRest((allHoursRest) => newHourRest)
+        setAllHoursRest(() => newHourRest)
         }
 
     function newSecondRest(number,time,type){ 
@@ -114,9 +99,9 @@ const SetTimeHeader = (props) => {
                 time,
                 type
             }
-        setAllSecondsRest((allSecondsRest) => newSecondRest)
+        setAllSecondsRest(() => newSecondRest)
         }
-    //repeat
+    
     const [repeat, setRepeat] = useState(
         JSON.parse(localStorage.getItem('Repeat')) || 0
     )
@@ -124,18 +109,16 @@ const SetTimeHeader = (props) => {
         localStorage.setItem('CurrentRepeat', JSON.stringify(0))},[])
     useEffect(()=>{
         localStorage.setItem('Repeat', JSON.stringify(repeat))
-    }
-    ,[repeat])
+    },[repeat])
 
     function newRepeat(number,type){
         let newRepeat = {
             number,
             type
         }
-    setRepeat((repeat) => newRepeat)
+    setRepeat(() => newRepeat)
     }
 
-    //else
    useEffect(
         () => {
             if (timeRef.current === 0){
@@ -147,7 +130,7 @@ const SetTimeHeader = (props) => {
                     newSecondRest(document.getElementsByClassName('li__input_break')[1].value,'second','break')
                     newHourRest(document.getElementsByClassName('li__input_break')[2].value,'hour','break')
                 }
-                return props.switchWorkTime()
+                return dispatch(switchWorkTime())
             }
             else if (timeRef.current === 1){
                 if (document.getElementsByClassName('li__input_work').length !== 0){
@@ -157,7 +140,7 @@ const SetTimeHeader = (props) => {
                 if(document.getElementsByClassName('li__input_repeat').length !==0){
                 newRepeat(document.getElementsByClassName('li__input_repeat')[0].value,'repeat')
                 }
-                return props.switchBreakTime()
+                return dispatch(switchBreakTime())
             }
             else if (timeRef.current === 2){
                 if (document.getElementsByClassName('li__input_work').length !== 0){
@@ -170,47 +153,7 @@ const SetTimeHeader = (props) => {
                 newSecondRest(document.getElementsByClassName('li__input_break')[1].value,'second','break')
                 newHourRest(document.getElementsByClassName('li__input_break')[2].value,'hour','break')
             }
-                return props.switchRepeat()
+                return dispatch(switchRepeat())
         },
-        [props,time])
-
-    const handlePlusTime = useCallback(() =>{
-        if (time >= timesOfPomodora.length - 1){
-            setTime(0)
-            timeRef.current = 0
-        }
-        else{
-            setTime(time+1)
-            timeRef.current++
-        }
-    },[time, timeRef])
-
-    const handleMinusTime = useCallback(() =>{
-        if (time <= 0){
-            setTime(timesOfPomodora.length - 1)
-            timeRef.current = timesOfPomodora.length - 1
-        }
-        else{
-            setTime(time-1)
-            timeRef.current--
-        }
-    },[time, timeRef])
-
-    return (
-        <header className='set_time_header' style={{paddingTop:props.paddingTop}}>
-            <MdKeyboardArrowLeft onClick={()=>handleMinusTime()} className='set_time_header__arrow'/>
-                <label className='set_time_header__label'>
-                    {timesOfPomodora[time].name}
-                </label>
-            <MdKeyboardArrowRight onClick={()=>handlePlusTime()} className='set_time_header__arrow'/>
-        </header>
-    )
+        [switchBreakTime,switchRepeat,switchWorkTime, dispatch, timeRef, handleOperatorTime])
 }
-
-const mapDispatchToProps = {
-    switchWorkTime,
-    switchBreakTime,
-    switchRepeat,
-}
-
-export default connect(null,mapDispatchToProps)(SetTimeHeader)

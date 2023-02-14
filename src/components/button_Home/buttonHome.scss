@@ -19,7 +19,8 @@ $standart_button_home_height:108px;
     &:active{
         transform: translate(-50%, -50%);
     }
-    .text_home{
+    
+.text_home{
         position:absolute;
         font-size: 34px;
         font-family: 'PressStart2P';
@@ -29,7 +30,10 @@ $standart_button_home_height:108px;
         color: #FC0000;    
         @media screen and (min-width:1400px){
             font-size: calc(34px * 1.5);
-        }}}
+        }
+    }
+}
+
 .shadow_home{
         position: absolute;
         width: $standart_button_home_width;

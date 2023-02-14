@@ -14,7 +14,7 @@ $standart_button_menu_height:78px;
         width: ($standart_button_menu_width * 1.5);
         height: ($standart_button_menu_height * 1.5);
     }
-    @media screen and (max-width:500px){
+    @media screen and (max-width:632px){
         width: calc($standart_button_menu_width - 120px);
     }
 }
@@ -33,7 +33,7 @@ $standart_button_menu_height:78px;
         width: ($standart_button_menu_width * 1.5);
         height: ($standart_button_menu_height * 1.5);
     }
-    @media screen and (max-width:500px){
+    @media screen and (max-width:632px){
         width: 300px;
         border-radius:12px;
     }
@@ -55,7 +55,7 @@ $standart_button_menu_height:78px;
             font-size: (13px * 1.5);
             width: calc($standart_button_menu_width * 1.5);
         }
-        @media screen and (max-width:500px){
+        @media screen and (max-width:632px){
             width: 200px;
             top: 50%;
             left: 50%;

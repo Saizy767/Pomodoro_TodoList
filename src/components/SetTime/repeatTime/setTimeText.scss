@@ -16,10 +16,6 @@
         height: calc(84px / 1.25);
     }
     @media screen and (max-width: 320px) {
-        width: calc(180px / 1.35);
-        height: calc(84px / 1.35);
-    }
-    @media screen and (max-width: 320px) {
         width: calc(180px / 1.5);
         height: calc(84px / 1.5);
     }
@@ -40,7 +36,6 @@
     .li{
         list-style: none;
         position: relative;
-
         &__input_repeat{
             padding-top: 2px;
             text-align: center;
@@ -60,7 +55,7 @@
             padding-top: calc(2px * 1.5);
             font-size: calc(11px * 1.5);
             border-radius: calc(3px * 1.5);
-        }
+            }
         }
         &__time_repeat{
             margin-bottom: 6px;

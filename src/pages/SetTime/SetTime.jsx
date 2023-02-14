@@ -2,14 +2,14 @@ import {React,useEffect,useState} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Header from '../../components/UI/header/header'
-import MiniButton from '../../components/UI/miniButton/miniButton'
-import Warning from '../../components/UI/warningMessage/warning';
-import SetTimeHeader from '../../components/UI/SetTime/setTimeHeader'
-import WorkTimePlace from '../../components/UI/SetTime/workTime/workTimePlace';
-import BreakTimePlace from '../../components/UI/SetTime/breakTime/breakTimePlace';
-import classes from '../../box.module.scss'
-import Repeat from '../../components/UI/SetTime/repeatTime/repeatTimePlace'
+import Header from '../../components/header/header'
+import MiniButton from '../../components/miniButton/miniButton'
+import Warning from '../../components/warningMessage/warning';
+import SetTimeHeader from '../../components/SetTime/setTimeHeader'
+import WorkTimePlace from '../../components/SetTime/workTime/workTimePlace';
+import BreakTimePlace from '../../components/SetTime/breakTime/breakTimePlace';
+import classes from '../../styles/box.module.scss'
+import Repeat from '../../components/SetTime/repeatTime/repeatTimePlace'
 
 
 const SetTime = (props) =>{
@@ -44,7 +44,7 @@ const SetTime = (props) =>{
                 time,
                 type
             }
-        setAllMinutes((allMinutes) => newMinute)
+        setAllMinutes(() => newMinute)
         }
     
     function newHour(number,time,type){
@@ -53,7 +53,7 @@ const SetTime = (props) =>{
                 time,
                 type
             }
-        setAllHours((allHours) => newHour)
+        setAllHours(() => newHour)
         }
     
     function newSecond(number,time,type){ 
@@ -62,7 +62,7 @@ const SetTime = (props) =>{
                 time,
                 type
             }
-        setAllSeconds((allSeconds) => newSecond)
+        setAllSeconds(() => newSecond)
         }
     //break
     const [allMinutesRest, setAllMinutesRest] = useState(
@@ -96,7 +96,7 @@ const SetTime = (props) =>{
                 time,
                 type
             }
-        setAllMinutesRest((allMinutesRest) => newMinuteRest)
+        setAllMinutesRest(() => newMinuteRest)
         }
     
     function newHourRest(number,time,type){
@@ -105,7 +105,7 @@ const SetTime = (props) =>{
                 time,
                 type
             }
-        setAllHoursRest((allHoursRest) => newHourRest)
+        setAllHoursRest(() => newHourRest)
         }
     
     function newSecondRest(number,time,type){ 
@@ -114,7 +114,7 @@ const SetTime = (props) =>{
                 time,
                 type
             }
-        setAllSecondsRest((allSecondsRest) => newSecondRest)
+        setAllSecondsRest(() => newSecondRest)
         }
     //repeat
     const [repeat, setRepeat] = useState(
@@ -132,35 +132,29 @@ const SetTime = (props) =>{
             number,
             type
         }
-    setRepeat((repeat) => newRepeat)
+    setRepeat(() => newRepeat)
       }
         function setAllTime(){
           if(document.getElementsByClassName('li__input_break').length !==0){
-            console.log('break set')
             newMinuteRest(document.getElementsByClassName('li__input_break')[0].value,'minute','break')
             newSecondRest(document.getElementsByClassName('li__input_break')[1].value,'second','break')
             newHourRest(document.getElementsByClassName('li__input_break')[2].value,'hour','break')
           }
           if(document.getElementsByClassName('li__input_repeat').length !== 0){
-            console.log('repeat set')
             newRepeat(document.getElementsByClassName('li__input_repeat')[0].value,'repeat')
           }
           if(document.getElementsByClassName('li__input_work').length !== 0){
             newMinute(document.getElementsByClassName('li__input_work')[0].value, 'minute','work')
             newSecond(document.getElementsByClassName('li__input_work')[1].value, 'second','work')
             newHour(document.getElementsByClassName('li__input_work')[2].value, 'hour','work')
-            console.log()
           }
         }
-    
-
+        console.log(props)
   return(
     <div className={classes.background}>
       <div className={classes.box}>
         <div className={classes.box__page}>
-          <Link to='/menu' onClick={()=>localStorage.clear()}>
-              <Header/>
-          </Link>
+              <Header to={'/menu'} onClick={()=>localStorage.clear()}/>
           <div className={classes.set_place} style={{display:'block'}}>
             <SetTimeHeader paddingTop='10%' />
               {props.workTime && <WorkTimePlace/>}

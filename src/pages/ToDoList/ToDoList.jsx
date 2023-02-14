@@ -2,16 +2,16 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {React, useState, useEffect} from 'react';
 
-import Header from '../../components/UI/header/header'
-import ToDoInput from '../../components/UI/toDoInput/toDoInput';
-import MiniButton from '../../components/UI/miniButton/miniButton';
-import SetTimeHeader from '../../components/UI/SetTime/setTimeHeader';
+import Header from '../../components/header/header'
+import ToDoInput from '../../components/toDoInput/toDoInput';
+import MiniButton from '../../components/miniButton/miniButton';
+import SetTimeHeader from '../../components/SetTime/setTimeHeader';
 import Button from '../../images/button.svg'
-import WorkTimePlace from '../../components/UI/SetTime/workTime/workTimePlace';
-import BreakTimePlace from '../../components/UI/SetTime/breakTime/breakTimePlace';
-import Repeat from '../../components/UI/SetTime/repeatTime/repeatTimePlace';
+import WorkTimePlace from '../../components/SetTime/workTime/workTimePlace';
+import BreakTimePlace from '../../components/SetTime/breakTime/breakTimePlace';
+import Repeat from '../../components/SetTime/repeatTime/repeatTimePlace';
 
-import classes from '../../box.module.scss'
+import classes from '../../styles/box.module.scss'
 import './toDoList.scss'
 
 
@@ -190,9 +190,7 @@ function newRepeat(number,type){
     <div className={classes.background}>
       <div className={classes.box}>
         <div className={classes.box__page}>
-            <Link to='/menu' onClick={()=>localStorage.clear()}>
-              <Header/>
-            </Link>
+              <Header to={'/menu'} onClick={()=>localStorage.clear()}/>
             <div className={classes.set_place} style={{flexDirection:'row'}}>
                 <div style={{flex:'3'}}>
                   <SetTimeHeader paddingTop='10%'/>

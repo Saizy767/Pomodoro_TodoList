@@ -1,7 +1,7 @@
 import {React,useCallback} from "react";
 
 import { connect} from "react-redux";
-import { repeatChanger } from "../../../../redux/actions/actionChangeRepeat";
+import { repeatChanger } from "../../../redux/actions/actionChangeRepeat";
 import './setTimeText.scss'
 
 const SetTimeText = (props) => {

@@ -1,39 +1,24 @@
 import {React, useCallback} from "react";
-import { showWarning } from "../../../../redux/actions/actionsWarningMessage";
-import {breakHourChanger, breakMinuteChanger, breakSecondChanger} from '../../../../redux/actions/actionChangeBreakTimer'
+import { showWarning } from "../../../redux/actions/actionsWarningMessage";
+import {breakHourChanger, breakMinuteChanger, breakSecondChanger} from '../../../redux/actions/actionChangeBreakTimer'
 import { connect} from "react-redux";
 import './setTimeText.scss'
+import { TimeSharing } from "../../../hooks/TimeSharing";
 
 
 const SetTimeText = (props) => {
     const handleChange = useCallback((elem) => {
-        const value = elem.target.value.replace(/\D/g, '')
-        if (Number(value) <= Number(props.maxValue) && props.textTime === 'MINUTES'){
-            props.breakMinuteChanger(value)
-        }
-        if (Number(value) <= Number(props.maxValue) && props.textTime === 'HOURS' ){
-            props.breakHourChanger(value)
-        }
-        if (Number(value) <= Number(props.maxValue) && props.textTime === 'SECONDS' ){
-             props.breakSecondChanger(value)
-        }
-        if (Number(value) > Number(props.maxValue) && props.textTime === 'MINUTES' ){
-            props.breakMinuteChanger(props.maxValue)
-        }
-        if (Number(value) > Number(props.maxValue) && props.textTime === 'HOURS' ){
-            props.breakHourChanger(props.maxValue)
-        }
-        if (Number(value) > Number(props.maxValue) && props.textTime === 'SECONDS' ){
-            props.breakSecondChanger(props.maxValue)
-        }
-        
-        if (Number(value) <= Number(props.maxValue)){
-        }
-        else{
-            props.showWarning(props.textTime, props.maxValue)
-        }
-        
-  },[props])
+        const value = parseInt(elem.target.value.replace(/\D/g, ''))
+        TimeSharing(value, 
+                    props.maxValue, 
+                    props.textTime, 
+                    props.breakSecondChanger, 
+                    props.breakMinuteChanger, 
+                    props.breakHourChanger,
+                    props.showWarning)
+       },[props.breakHourChanger, props.breakMinuteChanger, 
+        props.breakSecondChanger, props.maxValue, 
+        props.showWarning, props.textTime])
     return(
         <>
         <li className='break_li li'>

@@ -2,12 +2,12 @@ $standart_header_width:410px;
 $standart_header_heigth:92px;
 
 .head_place{
-    position: relative;
+    position: absolute;
     width: $standart_header_width;
     height: $standart_header_heigth;
-    top: 10px;
+    top: 5%;
     left: 50%;
-    transform: translate(-50%, 10px);
+    transform: translate(-50%, 0%);
     background-color: #969390;
     border-radius: 33.5px;
     z-index: 3;
@@ -18,7 +18,7 @@ $standart_header_heigth:92px;
     @media screen and (max-width:736px){
         width: 300px;
         height: 100px;
-        transform: translate(-50%,10px);
+        transform: translate(-50%,-20%);
         border-radius: 20px;
     }
     &__text{
@@ -50,9 +50,9 @@ $standart_header_heigth:92px;
     position: relative;
     width: $standart_header_width;
     height: $standart_header_heigth;
-    top: calc(6% + 15px);
     left: 50%;
-    transform: translate(-50%, -60%);
+    top: 7%;
+    transform: translate(-50%, 5%);
     background-color: #706D6B;
     border-radius: 33.5px;
     z-index:2;
