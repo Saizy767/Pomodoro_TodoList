@@ -20,7 +20,6 @@ const SetTimeText = (props) => {
         props.breakSecondChanger, props.maxValue, 
         props.showWarning, props.textTime])
     return(
-        <>
         <li className='break_li li'>
             <input className='li__input_break'  value={props.value}
                                                     onChange={handleChange}
@@ -32,7 +31,6 @@ const SetTimeText = (props) => {
             <div className='li__time_type' style={{display:props.display}}>{props.textTime}</div>
             <div className='li__time_place' style={{height:props.height}} ></div>
         </li>
-        </>
     )
 }
 

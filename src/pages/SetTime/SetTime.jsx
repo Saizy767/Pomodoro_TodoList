@@ -1,6 +1,8 @@
-import {React,useEffect,useState} from 'react';
+import {React,useCallback,useEffect} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
+import { useSetTime } from '../../hooks/useSetTime';
 
 import Header from '../../components/header/header'
 import MiniButton from '../../components/miniButton/miniButton'
@@ -13,143 +15,39 @@ import Repeat from '../../components/SetTime/repeatTime/repeatTimePlace'
 
 
 const SetTime = (props) =>{
-    const [allMinutes, setAllMinutes] = useState(
-        JSON.parse(localStorage.getItem('Minute')) || ''
-    )
-    const [allHours, setAllHours] = useState(
-        JSON.parse(localStorage.getItem('Hour')) || ''
-    )
-    const [allSeconds, setAllSeconds] = useState(
-        JSON.parse(localStorage.getItem('Second')) || ''
-    )
-    
-    useEffect(()=>{
-        localStorage.setItem('Minute', JSON.stringify(allMinutes))
-    }
-    ,[allMinutes])
-    
-    useEffect(()=>{
-        localStorage.setItem('Second', JSON.stringify(allSeconds))
-    }
-    ,[allSeconds])
-    
-    useEffect(()=>{
-        localStorage.setItem('Hour', JSON.stringify(allHours))
-    }
-    ,[allHours])
-    
-    function newMinute(number,time,type){
-            let newMinute = {
-                number,
-                time,
-                type
-            }
-        setAllMinutes(() => newMinute)
-        }
-    
-    function newHour(number,time,type){
-            let newHour = {
-                number,
-                time,
-                type
-            }
-        setAllHours(() => newHour)
-        }
-    
-    function newSecond(number,time,type){ 
-            let newSecond = {
-                number,
-                time,
-                type
-            }
-        setAllSeconds(() => newSecond)
-        }
-    //break
-    const [allMinutesRest, setAllMinutesRest] = useState(
-        JSON.parse(localStorage.getItem('MinuteR')) || ''
-    )
-    const [allHoursRest, setAllHoursRest] = useState(
-        JSON.parse(localStorage.getItem('HourR')) || ''
-    )
-    const [allSecondsRest, setAllSecondsRest] = useState(
-        JSON.parse(localStorage.getItem('SecondR')) || ''
-    )
-    
-    useEffect(()=>{
-        localStorage.setItem('MinuteR', JSON.stringify(allMinutesRest))
-    }
-    ,[allMinutesRest])
-    
-    useEffect(()=>{
-        localStorage.setItem('SecondR', JSON.stringify(allSecondsRest))
-    }
-    ,[allSecondsRest])
-    
-    useEffect(()=>{
-        localStorage.setItem('HourR', JSON.stringify(allHoursRest))
-    }
-    ,[allHoursRest])
-    
-    function newMinuteRest(number,time,type){
-            let newMinuteRest = {
-                number,
-                time,
-                type
-            }
-        setAllMinutesRest(() => newMinuteRest)
-        }
-    
-    function newHourRest(number,time,type){
-            let newHourRest = {
-                number,
-                time,
-                type
-            }
-        setAllHoursRest(() => newHourRest)
-        }
-    
-    function newSecondRest(number,time,type){ 
-            let newSecondRest= {
-                number,
-                time,
-                type
-            }
-        setAllSecondsRest(() => newSecondRest)
-        }
-    //repeat
-    const [repeat, setRepeat] = useState(
-        JSON.parse(localStorage.getItem('Repeat')) || 0
-    )
+    const newMinute = useSetTime('Minute')
+    const newHour = useSetTime('Hour')
+    const newSecond = useSetTime('Second')
+
+    const newMinuteRest = useSetTime('MinuteR')
+    const newHourRest = useSetTime('HourR')
+    const newSecondRest = useSetTime('SecondR')
+
+    const newRepeat = useSetTime('Repeat')
+
     useEffect(()=>{
         localStorage.setItem('CurrentRepeat', JSON.stringify(0))},[])
-    useEffect(()=>{
-        localStorage.setItem('Repeat', JSON.stringify(repeat))
-    }
-    ,[repeat])
     
-    function newRepeat(number,type){
-        let newRepeat = {
-            number,
-            type
+    const setAllTime= useCallback(()=>{
+        const WorkElem = document.getElementsByClassName('li__input_work')
+        const BreakElem = document.getElementsByClassName('li__input_break')
+        const RepeatElem = document.getElementsByClassName('li__input_repeat')
+
+        if(BreakElem.length){
+            newMinuteRest(BreakElem[0].value,'minute','break')
+            newSecondRest(BreakElem[1].value,'second','break')
+            newHourRest(BreakElem[2].value,'hour','break')
         }
-    setRepeat(() => newRepeat)
-      }
-        function setAllTime(){
-          if(document.getElementsByClassName('li__input_break').length !==0){
-            newMinuteRest(document.getElementsByClassName('li__input_break')[0].value,'minute','break')
-            newSecondRest(document.getElementsByClassName('li__input_break')[1].value,'second','break')
-            newHourRest(document.getElementsByClassName('li__input_break')[2].value,'hour','break')
-          }
-          if(document.getElementsByClassName('li__input_repeat').length !== 0){
-            newRepeat(document.getElementsByClassName('li__input_repeat')[0].value,'repeat')
-          }
-          if(document.getElementsByClassName('li__input_work').length !== 0){
-            newMinute(document.getElementsByClassName('li__input_work')[0].value, 'minute','work')
-            newSecond(document.getElementsByClassName('li__input_work')[1].value, 'second','work')
-            newHour(document.getElementsByClassName('li__input_work')[2].value, 'hour','work')
-          }
+        if(RepeatElem.length){
+            newRepeat(RepeatElem[0].value,'repeat')
         }
-        console.log(props)
+        if(WorkElem.length){
+            newMinute(WorkElem[0].value, 'minute','work')
+            newSecond(WorkElem[1].value, 'second','work')
+            newHour(WorkElem[2].value, 'hour','work')
+          }
+        },[newHour, newHourRest, newMinute, newMinuteRest, newRepeat, newSecond, newSecondRest])
+    
   return(
     <div className={classes.background}>
       <div className={classes.box}>
