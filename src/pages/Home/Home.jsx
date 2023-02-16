@@ -1,4 +1,3 @@
-import Header from '../../components/header/header'
 import Button from '../../components/button_Home/buttonHome'
 import Fox from '../../components/Fox/Fox'
 import { useCallback, useState } from 'react'
@@ -14,8 +13,7 @@ const Home = () => {
 
   return (
     <>
-        <BoxContainer>
-          <Header onClick = {() => handleVisibilityFoxy()} to={'/'}/>
+        <BoxContainer onClick = {() => handleVisibilityFoxy()} to={'/'}>
           <Button to={'/menu'}/>
         </BoxContainer>
       {visibilityFox && <Fox/>}

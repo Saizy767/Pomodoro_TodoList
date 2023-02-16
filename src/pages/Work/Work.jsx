@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Link} from 'react-router-dom';
 import {Howl} from 'howler';
 
-import Header from '../../components/header/header'
+
 import MiniButton from '../../components/miniButton/miniButton'
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import TimerSong from '../../song/Timer.mp3'
@@ -10,6 +10,7 @@ import Timer from '../../components/Timer/Timer'
 
 import classes from '../../styles/box.module.scss'
 import './Work.scss'
+import BoxContainer from '../../components/BoxContainer/BoxContainer';
 
 
 const Work = () => {
@@ -94,33 +95,32 @@ const Work = () => {
           setCurrentTask(currentTask=>currentTask+1)
           }
         }
+        const handlerClickToHead = () =>{
+          stop();
+          localStorage.clear()
+          sound.stop()
+        }
 
   return (
-        <div className={classes.background}>
-          <div className={classes.box}>
-            <div className={classes.box__page}>
-                <Header to='/menu' onClick={() => { stop(); localStorage.clear(); sound.stop()}}/>
-              <div className={classes.set_place} style={{display:'flex', flexDirection:'column'}}>
-                <span className='set_place__title' style={{flex:'0 1 -1px'}}>{JSON.parse(localStorage.Tasks).length !==0 ? JSON.parse(localStorage.Tasks)[currentTask].item: 'WORK'}</span>
-                <Timer time={time}/>
-                <ProgressBar road={(100 - road) + '%'}/>
-                <div className='set_place__menu_buttons menu_buttons'>
-                  {isPaused
-                    ? <MiniButton function = {() =>falseChanger()} text='Start' position='relative' flex='1'/> :
-                      <MiniButton function = {() =>trueChanger()} text='Pause' position='relative' flex='1'/>}
-                  <Link to={JSON.parse(localStorage.Repeat).number <= JSON.parse(localStorage.CurrentRepeat) 
-                        ? '/complete': '/breaktime'}
-                        style={{position:'relative', flex:1}}
-                        onMouseUp={()=>nextPage()}
-                        onClick={()=> sound.stop()}>
-                      <MiniButton text='Next'/>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className={classes.shadow}></div> 
-         </div>
+      <BoxContainer to='/menu' onClick={() => handlerClickToHead()}>
+        <div className={classes.set_place} style={{display:'flex', flexDirection:'column'}}>
+          <span className='set_place__title' style={{flex:'0 1 -1px'}}>{JSON.parse(localStorage.Tasks).length !==0 ? JSON.parse(localStorage.Tasks)[currentTask].item: 'WORK'}</span>
+          <Timer time={time}/>
+          <ProgressBar road={(100 - road) + '%'}/>
+          <div className='set_place__menu_buttons menu_buttons'>
+            {isPaused ? 
+                <MiniButton function = {() =>falseChanger()} text='Start' position='relative' flex='1'/> :
+                <MiniButton function = {() =>trueChanger()} text='Pause' position='relative' flex='1'/>}
+            <Link to={JSON.parse(localStorage.Repeat).number <= JSON.parse(localStorage.CurrentRepeat) 
+                  ? '/complete': '/breaktime'}
+                  style={{position:'relative', flex:1}}
+                  onMouseUp={()=>nextPage()}
+                  onClick={()=> sound.stop()}>
+                <MiniButton text='Next'/>
+            </Link>
+          </div>
         </div>
+      </BoxContainer>
       );
     }
 

@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import {React, useState, useEffect, useCallback} from 'react';
 
-import Header from '../../components/header/header'
 import ToDoInput from '../../components/toDoInput/toDoInput';
 import MiniButton from '../../components/miniButton/miniButton';
 import SetTimeHeader from '../../components/SetTime/setTimeHeader';
@@ -14,6 +13,7 @@ import classes from '../../styles/box.module.scss'
 import './toDoList.scss'
 import { useSelector } from 'react-redux';
 import { useSetTime } from '../../hooks/useSetTime';
+import BoxContainer from '../../components/BoxContainer/BoxContainer';
 
 
 const TodoList = () => {
@@ -35,6 +35,7 @@ const TodoList = () => {
 useEffect(()=>{
     localStorage.setItem('CurrentRepeat', JSON.stringify(0))},
     [])
+
     const[task, setTask]=useState('')
     const [tasks, setTasks]=useState(
         JSON.parse(localStorage.getItem('Tasks'))  || []
@@ -86,10 +87,7 @@ useEffect(()=>{
       },[counter, setAllTasks])
   
   return (
-    <div className={classes.background}>
-      <div className={classes.box}>
-        <div className={classes.box__page}>
-              <Header to={'/menu'} onClick={()=>localStorage.clear()}/>
+    <BoxContainer to={'/menu'} onClick={()=>localStorage.clear()}>
             <div className={classes.set_place} style={{flexDirection:'row'}}>
                 <div style={{flex:'3'}}>
                   <SetTimeHeader paddingTop='10%'/>
@@ -115,10 +113,7 @@ useEffect(()=>{
                     <MiniButton text='START' />
                 </Link>
             </div>
-        </div>
-        <div className={classes.shadow}></div> 
-      </div>
-    </div>
+    </BoxContainer>
   );
 }
 

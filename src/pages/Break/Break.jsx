@@ -1,7 +1,6 @@
 import React, { useState} from 'react'
 import {Howl} from 'howler';
 
-import Header from '../../components/header/header'
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import TimerSong from '../../song/Timer.mp3'
 
@@ -13,9 +12,9 @@ import BottomMenu from '../../components/BottonMenu/BottonMenu';
 
 
 const Break = () => {
-  const startHour= parseInt(JSON.parse(localStorage.Hour).number) || 0
-  const startMinute= parseInt(JSON.parse(localStorage.Minute).number) || 0
-  const startSecond= parseInt(JSON.parse(localStorage.Second).number) || 0
+  const startHour= parseInt(JSON.parse(localStorage.HourR).number) || 0
+  const startMinute= parseInt(JSON.parse(localStorage.MinuteR).number) || 0
+  const startSecond= parseInt(JSON.parse(localStorage.SecondR).number) || 0
 
   const startTime = startHour * 3600 + startMinute * 60 + startSecond
 
@@ -40,10 +39,9 @@ const Break = () => {
     localStorage.clear()
     sound.stop()
   }
-  debugger
+ 
   return (
-        <BoxContainer>
-            <Header to='/menu' onClick={() => handlerClickToHead()}/>
+        <BoxContainer  to='/menu' onClick={() => handlerClickToHead()}>
             <div className={classes.set_place} style={{display:'flex', flexDirection:'column'}}>
               <span className='set_place__title'>BREAK</span>
               <Timer time={time}/>
