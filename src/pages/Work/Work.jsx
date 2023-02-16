@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import { Link} from 'react-router-dom';
 import {Howl} from 'howler';
 
@@ -46,7 +46,7 @@ const Work = () => {
     }
     ,[currentTask])
 
-    const sound = useCallback(()=> new Howl({
+    const sound = useMemo(()=> new Howl({
         src: [TimerSong],
         loop: true,
         volume: 1,})

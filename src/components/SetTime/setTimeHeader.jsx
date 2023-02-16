@@ -1,6 +1,6 @@
 import React, {useCallback, useState } from "react";
 import {MdKeyboardArrowRight, MdKeyboardArrowLeft} from 'react-icons/md'
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {timesOfPomodora} from '../../data/timesOfPomodoro'
 import { switchWorkTime, switchBreakTime, switchRepeat} from "../../redux/actions/actionSwitchTimePlace";
@@ -11,6 +11,7 @@ import './setTimeHeader.scss'
 const SetTimeHeader = (props) => {
     let [time, setTime] = useState(0)
     let timeRef = React.useRef(time)
+    const dispatch = useDispatch()
 
     const handleOperatorTime = useCallback((operator) =>{
         const counter = operator === '+' ? 1 : -1
@@ -28,7 +29,11 @@ const SetTimeHeader = (props) => {
         }
     },[time, timeRef])
 
-    useTimeDistribution(timeRef, switchWorkTime, switchBreakTime, switchRepeat, handleOperatorTime)
+    useTimeDistribution(timeRef, 
+                        dispatch(switchWorkTime), 
+                        dispatch(switchBreakTime), 
+                        dispatch(switchRepeat), 
+                        dispatch(handleOperatorTime))
     
     return (
         <div className='set_time_header' style={{paddingTop:props.paddingTop}}>
@@ -41,10 +46,5 @@ const SetTimeHeader = (props) => {
     )
 }
 
-const mapDispatchToProps = {
-    switchWorkTime,
-    switchBreakTime,
-    switchRepeat,
-}
 
-export default connect(null,mapDispatchToProps)(SetTimeHeader)
+export default SetTimeHeader

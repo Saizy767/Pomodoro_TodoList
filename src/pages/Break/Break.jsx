@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState, useMemo} from 'react'
 import {Howl} from 'howler';
 
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
@@ -24,11 +24,11 @@ const Break = () => {
 
   let intervalRef = React.useRef() 
 
-  const sound = new Howl({
+  const sound = useMemo(()=>new Howl({
     src: [TimerSong],
     loop: true,
     volume: 1
-  })
+  }),[])
 
   function stop(){
     return clearInterval(intervalRef.current)

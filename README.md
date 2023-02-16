@@ -16,4 +16,3 @@ https://user-images.githubusercontent.com/62712144/151918035-957c7cd8-07d1-4753-
   - React
   - Redux
   - localStorage
-  - express

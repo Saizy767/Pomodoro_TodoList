@@ -1,15 +1,16 @@
 import {React,useCallback} from "react";
 
-import { connect} from "react-redux";
+import { useDispatch} from "react-redux";
 import { repeatChanger } from "../../../redux/actions/actionChangeRepeat";
 import './setTimeText.scss'
 
 const SetTimeText = (props) => {
+    const dispatch = useDispatch()
 
     const handleChange = useCallback((elem) => {
         const value = elem.target.value.replace(/\D/g, '')
-        props.repeatChanger(value)
-  },[props])
+        dispatch(repeatChanger(value))
+  },[dispatch])
   
     return(
         <li className='repeat_li li'>
@@ -24,12 +25,4 @@ const SetTimeText = (props) => {
     )
 }
 
-const mapStateToProps = state =>({
-    repeat: state.repeatTimer.time
-  })
-
-const mapDispatchToProps = {
-    repeatChanger,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SetTimeText)
+export default SetTimeText

@@ -1,30 +1,30 @@
 import {React, useCallback} from "react";
 import { showWarning } from "../../../redux/actions/actionsWarningMessage";
 import {breakHourChanger, breakMinuteChanger, breakSecondChanger} from '../../../redux/actions/actionChangeBreakTimer'
-import { connect} from "react-redux";
+import { useDispatch} from "react-redux";
 import './setTimeText.scss'
 import { TimeSharing } from "../../../hooks/TimeSharing";
 
 
 const SetTimeText = (props) => {
+    const dispatch = useDispatch()
     const handleChange = useCallback((elem) => {
-        const value = parseInt(elem.target.value.replace(/\D/g, ''))
+        const value = parseInt(elem.target.value.replace(/\D/g, '')) || 0
         TimeSharing(value, 
                     props.maxValue, 
                     props.textTime, 
-                    props.breakSecondChanger, 
-                    props.breakMinuteChanger, 
-                    props.breakHourChanger,
-                    props.showWarning)
-       },[props.breakHourChanger, props.breakMinuteChanger, 
-        props.breakSecondChanger, props.maxValue, 
-        props.showWarning, props.textTime])
+                    dispatch(breakSecondChanger()), 
+                    dispatch(breakMinuteChanger()), 
+                    dispatch(breakHourChanger()),
+                    dispatch(showWarning()))
+       },[dispatch, props.maxValue, props.textTime])
+       
     return(
         <li className='break_li li'>
             <input className='li__input_break'  value={props.value}
-                                                    onChange={handleChange}
-                                                    placeholder= {props.placeholder ||  '--'}
-                                                    maxLength='2'
+                                                onChange={handleChange}
+                                                placeholder= {props.placeholder ||  '--'}
+                                                maxLength='2'
                                                 style={{width:props.width, height:props.heightInput,
                                                         transform:props.transformInput, left:props.leftInput}}>
             </input>
@@ -34,18 +34,5 @@ const SetTimeText = (props) => {
     )
 }
 
-const mapStateToProps = state =>({
-    message: state.warning.message,
-    hour: state.breakTimer.hour,
-    minute: state.breakTimer.minute,
-    second: state.breakTimer.second
-  })
 
-const mapDispatchToProps = {
-    showWarning,
-    breakHourChanger,
-    breakMinuteChanger,
-    breakSecondChanger
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SetTimeText)
+export default SetTimeText

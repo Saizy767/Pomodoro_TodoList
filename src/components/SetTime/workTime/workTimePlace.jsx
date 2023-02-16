@@ -1,40 +1,31 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import SetTimeText from './setTimeText';
 import './setTimeText.scss'
 
 
-const WorkTimePlace = (props) => {
+const WorkTimePlace = () => {
+    const {minute, second, hour} = useSelector(state => state.workTimer)
     return (
         <div className='work_ul'>
             <ul>
                 <SetTimeText    textTime='MINUTES'
                                 maxValue='60'
                                 placeholder = {JSON.parse(localStorage.Minute).number}
-                                value={props.minute}/>
+                                value={minute}/>
                 <SetTimeText    textTime='SECONDS'
                                 maxValue='60'
                                 placeholder = {JSON.parse(localStorage.Second).number}
-                                value={props.second}/>
+                                value={second}/>
                 <SetTimeText    textTime='HOURS'
                                 maxValue='24'
                                 placeholder = {JSON.parse(localStorage.Hour).number}
-                                value={props.hour}/>
+                                value={hour}/>
             </ul>
         </div>
         
     )
 }
-const mapStateToProps = state => ({
-    hour: state.workTimer.hour,
-    minute:state.workTimer.minute,
-    second:state.workTimer.second,
 
-    workTime: state.switchTimer.workTime,
-    breakTime: state.switchTimer.breakTime,
-    repeat: state.switchTimer.repeat,
-  })
-
-
-export default connect(mapStateToProps,null)(WorkTimePlace)
+export default WorkTimePlace

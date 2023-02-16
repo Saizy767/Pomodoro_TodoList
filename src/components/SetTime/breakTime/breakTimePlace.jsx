@@ -1,35 +1,31 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import SetTimeText from './setBreakTimeText';
 import './setTimeText.scss'
 
 
-const BreakTimePlace = (props) => {
+const BreakTimePlace = () => {
+    const {minute, second, hour} = useSelector(state => state.breakTimer)
     return (
         <div className='break_ul'>
             <ul>
                 <SetTimeText textTime='MINUTES'
                              maxValue='60'
                              placeholder = {JSON.parse(localStorage.MinuteR).number}
-                             value={props.minute}/>
+                             value={minute}/>
                 <SetTimeText textTime='SECONDS'
                              maxValue='60'
                              placeholder = {JSON.parse(localStorage.SecondR).number}
-                             value={props.second}/>
+                             value={second}/>
                 <SetTimeText textTime='HOURS'
                              maxValue='24' 
                              placeholder = {JSON.parse(localStorage.HourR).number}
-                             value={props.hour}/>
+                             value={hour}/>
             </ul>
         </div>
     )
 }
-const mapStateToProps = state => ({
-    hour:state.breakTimer.breakHour,
-    minute:state.breakTimer.breakMinute,
-    second:state.breakTimer.breakSecond,
-  })
 
 
-export default connect(mapStateToProps,null)(BreakTimePlace)
+export default BreakTimePlace

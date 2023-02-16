@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import SetTimeText from './setRepeatTime';
 import Arrow from '../../../images/white_arrow.png'
@@ -7,20 +7,22 @@ import { repeatChanger } from "../../../redux/actions/actionChangeRepeat";
 import './setTimeText.scss'
 
 
-const WorkTimePlace = (props) => {
+const WorkTimePlace = () => {
+    const dispatch = useDispatch()
+    const {repeat} = useSelector(state => state.repeatTimer)
 
     const repeatOperator = useCallback((operator)=>{
-        const countRepeat = parseInt(props.repeat)
+        const countRepeat = parseInt(repeat)
         if (operator === '+' && countRepeat < 99){
-            props.repeatChanger(countRepeat+1)
+            dispatch(repeatChanger(countRepeat+1))
         }
         else if (operator === '-' && countRepeat < 99){
-            props.repeatChanger(countRepeat-1)
+            dispatch(repeatChanger(countRepeat-1))
         }
         else{
-            props.repeatChanger(0)
+            dispatch(repeatChanger(0))
         }
-    },[props])
+    },[dispatch, repeat])
     
     return (
         <div className='repeat_ul'>
@@ -28,8 +30,8 @@ const WorkTimePlace = (props) => {
                 <img src={Arrow} alt='Arrow' onClick={() => repeatOperator('+')}
                                                     className='repeat_ul__arrow'></img>
                 <SetTimeText textTime='Repeat'
-                             value={props.repeat}
-                             placeholder = {props.repeat}
+                             value={repeat}
+                             placeholder = {repeat}
                             />
                 <img src={Arrow} alt='Arrow' onClick={() => repeatOperator('-')}
                                                     className='repeat_ul__arrow'
@@ -42,12 +44,5 @@ const WorkTimePlace = (props) => {
         </div>
     )
 }
-const mapStateToProps = state => ({
-    repeat: state.repeatTimer.time
-  })
 
-const mapDispatchToProps = {
-    repeatChanger,
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(WorkTimePlace)
+export default WorkTimePlace
