@@ -50,10 +50,10 @@ const SetTime = () =>{
   return(
     <BoxContainer to={'/menu'} onClick={()=>localStorage.clear()}>
       <div className={classes.set_place} style={{display:'block'}}>
-        <SetTimeHeader paddingTop='10%' />
-          {workTime && <WorkTimePlace/>}
-          {breakTime && <BreakTimePlace/>}
-          {repeat && <Repeat/>}
+        <SetTimeHeader paddingTop='10%'/>
+          {(workTime && <WorkTimePlace/>) ||
+          (breakTime && <BreakTimePlace/>) ||
+          (repeat && <Repeat/>)}
         <Link to='/worktime' onMouseUp={()=> setAllTime()}> 
           <MiniButton text='START'/>
         </Link>

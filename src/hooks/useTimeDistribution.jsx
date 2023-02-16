@@ -2,9 +2,10 @@ import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { useSetTime } from "./useSetTime"
 
-export const useTimeDistribution = (timeRef, switchWorkTime, switchBreakTime, 
+export const useTimeDistribution = (time, switchWorkTime, switchBreakTime, 
                                     switchRepeat, handleOperatorTime) => {
     const dispatch = useDispatch()
+    
     
     const newMinute = useSetTime('Minute')
     const newHour = useSetTime('Hour')
@@ -25,7 +26,7 @@ export const useTimeDistribution = (timeRef, switchWorkTime, switchBreakTime,
         const WorkElem = document.getElementsByClassName('li__input_work')
         const BreakElem = document.getElementsByClassName('li__input_break')
         const RepeatElem = document.getElementsByClassName('li__input_repeat')
-        switch(timeRef.current){
+        switch(time){
             case(0):{
                 if(RepeatElem.length){
                     newRepeat(RepeatElem[0].value,'repeat')
@@ -66,5 +67,5 @@ export const useTimeDistribution = (timeRef, switchWorkTime, switchBreakTime,
             newHourRest, newMinute, newMinuteRest, 
             newRepeat, newSecond, newSecondRest, 
             switchBreakTime, switchRepeat, switchWorkTime, 
-            timeRef])
+            time])
 }
