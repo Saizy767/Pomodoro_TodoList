@@ -6,20 +6,21 @@ import Header from '../../components/header/header'
 import MiniButton from '../../components/miniButton/miniButton'
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import TimerSong from '../../song/Timer.mp3'
+import Timer from '../../components/Timer/Timer'
 
 import classes from '../../styles/box.module.scss'
 import './Work.scss'
 
 
-const Work = (props) => {
-    const startHour= parseInt(JSON.parse(localStorage.Hour).number)
-    const startMinute= parseInt(JSON.parse(localStorage.Minute).number)
-    const startSecond= parseInt(JSON.parse(localStorage.Second).number)
-
-    const [time, setTime]= useState(startHour * 3600 + startMinute * 60 + startSecond)
-    const [isPaused, setIsPaused]=useState(false)
+const Work = () => {
+    const startHour= parseInt(JSON.parse(localStorage.Hour).number) || 0
+    const startMinute= parseInt(JSON.parse(localStorage.Minute).number) || 0
+    const startSecond= parseInt(JSON.parse(localStorage.Second).number) || 0
 
     const startTime = startHour * 3600 + startMinute * 60 + startSecond
+
+    const [time, setTime]= useState(startTime)
+    const [isPaused, setIsPaused]=useState(false)
 
     let timeRef = React.useRef(time)
     let isPausedRef = React.useRef(isPaused)
@@ -71,6 +72,7 @@ const Work = (props) => {
       function stop(){
         return clearInterval(intervalRef.current)
       }
+      
       function falseChanger() {
         if(time>0){
         setIsPaused(false)
@@ -92,22 +94,15 @@ const Work = (props) => {
           setCurrentTask(currentTask=>currentTask+1)
           }
         }
-    
-    let hour = Math.floor(time / 3600)
-    let minute = Math.floor((time - (hour * 3600)) / 60 )
-    let second = time % 60
 
-    second = second < 10 ? '0' + second: second
-    minute = minute < 10 ? '0' + minute: minute
-    hour = hour < 10 ? '0' + hour: hour
   return (
         <div className={classes.background}>
           <div className={classes.box}>
             <div className={classes.box__page}>
-              <Link to='/menu' onClick={() => { stop(); localStorage.clear(); sound.stop()}}><Header/></Link>
+                <Header to='/menu' onClick={() => { stop(); localStorage.clear(); sound.stop()}}/>
               <div className={classes.set_place} style={{display:'flex', flexDirection:'column'}}>
                 <span className='set_place__title' style={{flex:'0 1 -1px'}}>{JSON.parse(localStorage.Tasks).length !==0 ? JSON.parse(localStorage.Tasks)[currentTask].item: 'WORK'}</span>
-                <div className='set_place__timer' style={{flex:'1 1 -1px'}}>{hour+ ':' + minute + ':' + second}</div>
+                <Timer time={time}/>
                 <ProgressBar road={(100 - road) + '%'}/>
                 <div className='set_place__menu_buttons menu_buttons'>
                   {isPaused
