@@ -12,9 +12,9 @@ import BottomMenu from '../../components/BottonMenu/BottonMenu';
 
 
 const Break = () => {
-  const startHour= parseInt(JSON.parse(localStorage.HourR).number) || 0
-  const startMinute= parseInt(JSON.parse(localStorage.MinuteR).number) || 0
-  const startSecond= parseInt(JSON.parse(localStorage.SecondR).number) || 0
+  const startHour= Number(JSON.parse(localStorage.HourR).number) || 0
+  const startMinute= Number(JSON.parse(localStorage.MinuteR).number) || 0
+  const startSecond= Number(JSON.parse(localStorage.SecondR).number) || 0
 
   const startTime = startHour * 3600 + startMinute * 60 + startSecond
 
@@ -49,7 +49,8 @@ const Break = () => {
               <BottomMenu time={time} sound={sound} 
                           stop={() => stop()} 
                           intervalRef={intervalRef} 
-                          setTime={setTime}/>
+                          setTime={setTime}
+                          to = {'/worktime'}/>
             </div>
         </BoxContainer>
       );

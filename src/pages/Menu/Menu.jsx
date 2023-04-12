@@ -26,7 +26,7 @@ const Menu = (props) => {
         <MenuButton color='#FFE793'
                     text='Create to do list with timer'
                     backgroundcolor='#E5D084'
-                    transformMain='translateY(10%)'
+                    marginPanel='5% 0%'
                     to={'/todo'}/>
         <MenuButton color='#FFB7A0'
                     text='Select timer'

@@ -14,9 +14,10 @@ import BoxContainer from '../../components/BoxContainer/BoxContainer';
 
 
 const Work = () => {
-    const startHour= parseInt(JSON.parse(localStorage.Hour).number) || 0
-    const startMinute= parseInt(JSON.parse(localStorage.Minute).number) || 0
-    const startSecond= parseInt(JSON.parse(localStorage.Second).number) || 0
+
+    const startHour= Number(JSON.parse(localStorage.Hour).number) || 0
+    const startMinute= Number(JSON.parse(localStorage.Minute).number) || 0
+    const startSecond= Number(JSON.parse(localStorage.Second).number) || 0
 
     const startTime = startHour * 3600 + startMinute * 60 + startSecond
 
@@ -74,15 +75,11 @@ const Work = () => {
         return clearInterval(intervalRef.current)
       }
       
-      function falseChanger() {
+      function operatorChanger(bool) {
         if(time>0){
-        setIsPaused(false)
-        isPausedRef.current = false}
-      }
-      function trueChanger() {
-        if (time>0){
-        setIsPaused(true)
-        isPausedRef.current = true}
+          setIsPaused(bool)
+          isPausedRef.current = bool
+        }
       }
 
       function nextPage() {
@@ -95,6 +92,7 @@ const Work = () => {
           setCurrentTask(currentTask=>currentTask+1)
           }
         }
+        
         const handlerClickToHead = () =>{
           stop();
           localStorage.clear()
@@ -109,8 +107,8 @@ const Work = () => {
           <ProgressBar road={(100 - road) + '%'}/>
           <div className='set_place__menu_buttons menu_buttons'>
             {isPaused ? 
-                <MiniButton function = {() =>falseChanger()} text='Start' position='relative' flex='1'/> :
-                <MiniButton function = {() =>trueChanger()} text='Pause' position='relative' flex='1'/>}
+                <MiniButton function = {() =>operatorChanger(false)} text='Start' position='relative' flex='1'/> :
+                <MiniButton function = {() =>operatorChanger(true)} text='Pause' position='relative' flex='1'/>}
             <Link to={JSON.parse(localStorage.Repeat).number <= JSON.parse(localStorage.CurrentRepeat) 
                   ? '/complete': '/breaktime'}
                   style={{position:'relative', flex:1}}

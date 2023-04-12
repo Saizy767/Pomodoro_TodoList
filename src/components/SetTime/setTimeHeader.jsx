@@ -23,7 +23,11 @@ const SetTimeHeader = memo((props) => {
         }
     },[time])
 
-    useTimeDistribution(time, switchWorkTime, switchBreakTime, switchRepeat, handleOperatorTime)
+    useTimeDistribution(time, 
+                        switchWorkTime, 
+                        switchBreakTime, 
+                        switchRepeat, 
+                        handleOperatorTime)
     
     return (
         <div className='set_time_header' style={{paddingTop:props.paddingTop}}>

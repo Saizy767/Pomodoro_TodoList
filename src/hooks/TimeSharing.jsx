@@ -1,5 +1,5 @@
 export function TimeSharing (value, maxValue, timeFormat, secondFunc, minuteFunc, hourFunc, showWarning){
-    if(value <= parseInt(maxValue)){
+    if(value <= Number(maxValue)){
         switch(timeFormat){
             case('MINUTES'):{
                 minuteFunc(value)
@@ -13,7 +13,7 @@ export function TimeSharing (value, maxValue, timeFormat, secondFunc, minuteFunc
                 secondFunc(value)
                 break
             }
-            default:{}
+            default:
         }
     }
     else if( value > maxValue){
@@ -30,7 +30,7 @@ export function TimeSharing (value, maxValue, timeFormat, secondFunc, minuteFunc
                 secondFunc(maxValue)
                 break
             }
-            default:{}
+            default:
         }
     }
     else{

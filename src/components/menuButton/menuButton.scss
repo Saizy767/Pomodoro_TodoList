@@ -1,6 +1,12 @@
 $standart_button_menu_width:420px;
 $standart_button_menu_height:78px;
 
+.panel_menu{
+    transform: translateY(10%);
+    position: relative;
+    width: 100%;
+    height: 30%;
+}
 .shadow_menu{
     z-index: 1;
     position: relative;
@@ -20,8 +26,8 @@ $standart_button_menu_height:78px;
 }
 
 .button_menu{
+    position: absolute;
     display: flex;
-    position: relative;
     top: -10%;
     left: 50%;
     transform: translate(-50%,90%);

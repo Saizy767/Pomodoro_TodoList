@@ -9,7 +9,7 @@ import { TimeSharing } from "../../../hooks/TimeSharing";
 const SetTimeText = (props) => {
     const dispatch = useDispatch()
     const handleChange = useCallback((elem) => {
-        const value = parseInt(elem.target.value.replace(/\D/g, '')) || 0
+        const value = Number(elem.target.value.replace(/\D/g, '')) || 0
         TimeSharing(value, 
                     props.maxValue, 
                     props.textTime, 

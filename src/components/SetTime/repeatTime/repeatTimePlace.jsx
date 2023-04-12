@@ -12,7 +12,7 @@ const WorkTimePlace = () => {
     const {repeat} = useSelector(state => state.repeatTimer)
 
     const repeatOperator = useCallback((operator)=>{
-        const countRepeat = parseInt(repeat)
+        const countRepeat = Number(repeat)
         if (operator === '+' && countRepeat < 99){
             dispatch(repeatChanger(countRepeat+1))
         }

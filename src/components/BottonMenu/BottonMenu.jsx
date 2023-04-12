@@ -53,7 +53,7 @@ const BottomMenu = (props) => {
             {isPaused ? 
               <MiniButton function = {() =>pauseChanger(false)} text='Start' position='relative' flex='1'/> :
               <MiniButton function = {() =>pauseChanger(true)} text='Pause' position='relative' flex='1'/>}
-            <Link to='/worktime' style={{position:'relative', flex:1}} onClick={() => NextClick()}>
+            <Link to={props} style={{position:'relative', flex:1}} onClick={() => NextClick()}>
               <MiniButton text='Next'/>
             </Link>
         </div>

@@ -12,10 +12,10 @@ const SetTimeText = (props) => {
         TimeSharing(value, 
             props.maxValue,
             props.textTime,
-            dispatch(workSecondChanger),
-            dispatch(workMinuteChanger),
-            dispatch(workHourChanger),
-            dispatch(showWarning))
+            dispatch(workSecondChanger()),
+            dispatch(workMinuteChanger()),
+            dispatch(workHourChanger()),
+            dispatch(showWarning()))
     },[dispatch, props.maxValue, props.textTime])
    
     return(
